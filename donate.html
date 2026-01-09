@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄付・支援 | GO TO HAPPY LIFE</title>
+    <meta name="description" content="GO TO HAPPY LIFEへの寄付・支援。あなたの支援が、制度の外で困っている人を助けます。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 寄付ページ専用スタイル */
+        .support-methods {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .method-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+        
+        .method-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            border-color: var(--viridian);
+        }
+        
+        .method-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .method-card h3 {
+            font-size: 1.2rem;
+            color: var(--indigo);
+            margin-bottom: 0.5rem;
+        }
+        
+        .method-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        /* 事業別支援 */
+        .activity-support {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            scroll-margin-top: 100px;
+            border-left: 4px solid var(--viridian);
+        }
+        
+        .activity-support h3 {
+            font-size: 1.3rem;
+            color: var(--indigo);
+            margin-bottom: 0.5rem;
+        }
+        
+        .activity-support .tagline {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* 自由金額入力 */
+        .custom-amount {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .custom-amount-label {
+            font-size: 0.95rem;
+            color: var(--indigo);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+        
+        .custom-amount input {
+            width: 180px;
+            padding: 0.8rem 1rem;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: right;
+            transition: border-color 0.3s;
+        }
+        
+        .custom-amount input:focus {
+            outline: none;
+            border-color: var(--viridian);
+        }
+        
+        .custom-amount .yen-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-left: -0.3rem;
+        }
+        
+        .custom-amount button {
+            padding: 0.8rem 1.5rem;
+            background: var(--viridian);
+            color: var(--white);
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .custom-amount button:hover {
+            background: var(--viridian-dark);
+        }
+
+        .impact-display {
+            background: var(--viridian-light);
+            border-radius: 8px;
+            padding: 1.2rem;
+            margin: 1rem 0;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .impact-display.show {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .impact-display h5 {
+            font-size: 0.95rem;
+            color: var(--viridian-dark);
+            margin-bottom: 0.8rem;
+        }
+        
+        .impact-display ul {
+            list-style: none;
+            margin-bottom: 0.8rem;
+        }
+        
+        .impact-display li {
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .impact-display li::before {
+            content: "・";
+            position: absolute;
+            left: 0;
+            color: var(--viridian);
+        }
+        
+        .impact-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.8rem;
+            padding-top: 0.8rem;
+            border-top: 1px dashed var(--viridian);
+        }
+
+        .pre-support {
+            background: var(--viridian);
+            color: var(--white);
+            padding: 1.2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 1rem;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .pre-support.show {
+            display: block;
+        }
+        
+        .pre-support p {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .pre-support .final-btn {
+            background: var(--white);
+            color: var(--viridian);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pre-support .final-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* 税制優遇カード */
+        .tax-info-card {
+            background: var(--primary);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .tax-info-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .tax-info-header .tax-icon {
+            font-size: 1.3rem;
+        }
+        
+        .tax-info-header h3 {
+            font-size: 1.1rem;
+            color: var(--indigo);
+            margin: 0;
+        }
+        
+        .tax-info-card > p {
+            font-size: 0.9rem;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .tax-example {
+            background: var(--white);
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: var(--indigo);
+        }
+        
+        .tax-example strong {
+            color: var(--red);
+            font-size: 1.1rem;
+        }
+        
+        .tax-link {
+            display: inline-block;
+            color: var(--indigo);
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-decoration: underline;
+        }
+
+        /* 確認モーダル */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            padding: 1rem;
+        }
+        
+        .modal-overlay.show {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            animation: modalIn 0.3s ease;
+        }
+        
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .confirm-modal .modal-title {
+            font-size: 1.3rem;
+            color: var(--indigo);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .confirm-modal .confirm-details {
+            background: var(--primary-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        
+        .confirm-modal .confirm-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .confirm-modal .confirm-row:last-child {
+            border-bottom: none;
+        }
+        
+        .confirm-modal .confirm-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .confirm-modal .confirm-value {
+            color: var(--indigo);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .confirm-modal .confirm-value.amount {
+            color: var(--red);
+            font-size: 1.3rem;
+        }
+        
+        .confirm-modal .confirm-note {
+            background: var(--primary);
+            border-left: 3px solid var(--indigo);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: left;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .confirm-modal .confirm-note p {
+            font-size: 0.9rem;
+            color: var(--indigo);
+            line-height: 1.7;
+        }
+        
+        .confirm-modal .confirm-message {
+            font-size: 1.1rem;
+            color: var(--viridian);
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .modal-buttons .btn-modal-primary {
+            background: var(--viridian);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .modal-buttons .btn-modal-primary:hover {
+            background: var(--viridian-dark);
+            transform: translateY(-2px);
+        }
+        
+        .modal-buttons .btn-modal-secondary {
+            background: transparent;
+            color: var(--text-light);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .support-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .custom-amount {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .custom-amount input {
+                width: 100%;
+            }
+            
+            .custom-amount button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span>GO TO HAPPY LIFE</span>
+            </a>
+
+            <nav class="nav">
+                <a href="index.html">TOP</a>
+                <a href="board.html">団体役員</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html">支援の仕組み</a>
+                <a href="news.html">お知らせ</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="donate.html" class="active">寄付・支援</a>
+            </nav>
+
+            <button class="mobile-menu-btn" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>寄付・支援</h1>
+        <p>あなたの支援が、制度の外で困っている人を助けます</p>
+    </div>
+
+    <main class="main">
+
+        <section class="section">
+            <div class="statement-block">
+                <p class="statement-lead">私たちは、支援を"設計"しません。<br>現場で、一緒に考えます。</p>
+                <p class="statement-sub">だから、あなたの支援は確実に届きます。</p>
+            </div>
+
+            <!-- 税制優遇カード -->
+            <div class="tax-info-card">
+                <div class="tax-info-header">
+                    <h3>寄付金控除で税金が戻ります</h3>
+                </div>
+                <p>当法人は認定NPO法人です。寄付金は所得控除または税額控除の対象となります。</p>
+                <div class="tax-example">
+                    例：10,000円の寄付 → 実質負担 <strong>約6,000円</strong>（税額控除の場合）
+                </div>
+                <a href="tax-deduction.html" class="tax-link">税制優遇について詳しく見る →</a>
+            </div>
+
+            <!-- 事業別支援セクション -->
+            <h2 class="section-title">事業から選んで支援する</h2>
+            <p style="margin-bottom: 2rem; color: var(--text-light);">支援したい活動を選んで、金額を入力してください。</p>
+
+            <!-- 命を救う -->
+            <div class="activity-support" id="cat-save">
+                <h3>命を救う</h3>
+                <p class="tagline">緊急支援、医療サポート、災害対応など</p>
+                
+                <div class="custom-amount" data-category="save">
+                    <span class="custom-amount-label">支援金額</span>
+                    <input type="number" placeholder="1000" min="100" step="100">
+                    <span class="yen-label">円</span>
+                    <button onclick="applyCustomAmount('save', this)">この金額で支援</button>
+                </div>
+                
+                <div class="impact-display" id="impact-save"></div>
+                <div class="pre-support" id="pre-save"></div>
+            </div>
+
+            <!-- 生活を支える -->
+            <div class="activity-support" id="cat-life">
+                <h3>生活を支える</h3>
+                <p class="tagline">住居支援、生活相談、自立サポートなど</p>
+                
+                <div class="custom-amount" data-category="life">
+                    <span class="custom-amount-label">支援金額</span>
+                    <input type="number" placeholder="1000" min="100" step="100">
+                    <span class="yen-label">円</span>
+                    <button onclick="applyCustomAmount('life', this)">この金額で支援</button>
+                </div>
+                
+                <div class="impact-display" id="impact-life"></div>
+                <div class="pre-support" id="pre-life"></div>
+            </div>
+
+            <!-- 構造を変える -->
+            <div class="activity-support" id="cat-structure">
+                <h3>構造を変える</h3>
+                <p class="tagline">政策提言、調査研究、社会システム改善など</p>
+                
+                <div class="custom-amount" data-category="structure">
+                    <span class="custom-amount-label">支援金額</span>
+                    <input type="number" placeholder="1000" min="100" step="100">
+                    <span class="yen-label">円</span>
+                    <button onclick="applyCustomAmount('structure', this)">この金額で支援</button>
+                </div>
+                
+                <div class="impact-display" id="impact-structure"></div>
+                <div class="pre-support" id="pre-structure"></div>
+            </div>
+
+            <!-- 未来を育てる -->
+            <div class="activity-support" id="cat-future">
+                <h3>未来を育てる</h3>
+                <p class="tagline">人材育成、教育プログラム、次世代支援など</p>
+                
+                <div class="custom-amount" data-category="future">
+                    <span class="custom-amount-label">支援金額</span>
+                    <input type="number" placeholder="1000" min="100" step="100">
+                    <span class="yen-label">円</span>
+                    <button onclick="applyCustomAmount('future', this)">この金額で支援</button>
+                </div>
+                
+                <div class="impact-display" id="impact-future"></div>
+                <div class="pre-support" id="pre-future"></div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- 確認モーダル -->
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content confirm-modal">
+            <h3 class="modal-title">ご支援内容の確認</h3>
+            
+            <div class="confirm-details">
+                <div class="confirm-row">
+                    <span class="confirm-label">支援先</span>
+                    <span class="confirm-value" id="confirm-category"></span>
+                </div>
+                <div class="confirm-row">
+                    <span class="confirm-label">金額</span>
+                    <span class="confirm-value amount" id="confirm-amount"></span>
+                </div>
+            </div>
+            
+            <div class="confirm-note">
+                <p>決済完了後、ご登録のメールアドレスに確認メールをお送りします。領収書は確定申告時期（1月下旬）に発送いたします。</p>
+            </div>
+            
+            <p class="confirm-message">あなたの支援が、現場を前に進めます。</p>
+            
+            <div class="modal-buttons">
+                <button class="btn-modal-primary" onclick="goToPayment()">決済ページへ進む</button>
+                <button class="btn-modal-secondary" onclick="closeConfirmModal()">戻る</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-statement">
+                <p>GO TO HAPPY LIFE は、<br>正解よりも、現場を選び続けるNPOです。</p>
+            </div>
+
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span>GO TO HAPPY LIFE</span>
+                </a>
+
+                <nav class="footer-nav">
+                    <a href="index.html">TOP</a>
+                    <a href="board.html">団体役員</a>
+                    <a href="about.html">団体について</a>
+                    <a href="support-system.html">支援の仕組み</a>
+                    <a href="news.html">お知らせ</a>
+                    <a href="contact.html">お問い合わせ</a>
+                    <a href="donate.html">寄付・支援</a>
+                </nav>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                    <a href="sitepolicy.html">サイトポリシー</a>
+                    <a href="tax-deduction.html">寄付金控除について</a>
+                </div>
+                <p class="footer-copy">© GO TO HAPPY LIFE</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const impactData = {
+            save: {
+                bullets: [
+                    '緊急医療支援物資の調達',
+                    '災害時の初動対応・物資配送',
+                    '医療アクセスが困難な地域への支援'
+                ],
+                note: '具体的な用途は、その時々の現場状況に応じて最適化されます。'
+            },
+            life: {
+                bullets: [
+                    '生活困窮者への相談支援',
+                    '住居確保サポート',
+                    '自立に向けた伴走支援'
+                ],
+                note: '具体的な用途は、その時々の現場状況に応じて最適化されます。'
+            },
+            structure: {
+                bullets: [
+                    '社会課題の調査・研究',
+                    '政策提言活動',
+                    '関係機関との連携構築'
+                ],
+                note: '具体的な用途は、その時々の現場状況に応じて最適化されます。'
+            },
+            future: {
+                bullets: [
+                    '次世代人材の育成プログラム',
+                    '研修・教育機会の提供',
+                    'メンター制度・実践の場づくり'
+                ],
+                note: '具体的な用途は、その時々の現場状況に応じて最適化されます。'
+            }
+        };
+
+        const categoryNames = {
+            save: '命を救う',
+            life: '生活を支える',
+            structure: '構造を変える',
+            future: '未来を育てる'
+        };
+
+        const categoryIcons = {
+            save: '',
+            life: '',
+            structure: '',
+            future: ''
+        };
+
+        let currentSupport = {
+            category: '',
+            amount: 0
+        };
+
+        function applyCustomAmount(category, btn) {
+            const input = btn.parentElement.querySelector('input');
+            const amount = parseInt(input.value);
+            
+            if (!amount || amount < 100) {
+                alert('100円以上の金額を入力してください');
+                return;
+            }
+            
+            showImpact(category, amount);
+        }
+
+        document.querySelectorAll('.custom-amount input').forEach(input => {
+            input.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    const category = this.parentElement.dataset.category;
+                    const btn = this.parentElement.querySelector('button');
+                    applyCustomAmount(category, btn);
+                }
+            });
+        });
+
+        function showImpact(category, amount) {
+            const impactDiv = document.getElementById(`impact-${category}`);
+            const preDiv = document.getElementById(`pre-${category}`);
+            const data = impactData[category];
+            
+            document.querySelectorAll('.impact-display').forEach(d => {
+                if (d.id !== `impact-${category}`) d.classList.remove('show');
+            });
+            document.querySelectorAll('.pre-support').forEach(d => {
+                if (d.id !== `pre-${category}`) d.classList.remove('show');
+            });
+            
+            impactDiv.innerHTML = `
+                <h5>この支援で前に進むこと（例）</h5>
+                <ul>${data.bullets.map(i => `<li>${i}</li>`).join('')}</ul>
+                <p class="impact-note">${data.note}</p>
+            `;
+            impactDiv.classList.add('show');
+            
+            const formattedAmount = amount.toLocaleString();
+            preDiv.innerHTML = `
+                <p>あなたの支援は「${categoryNames[category]}」を前に進めます。</p>
+                <button class="final-btn" onclick="showConfirmModal('${category}', ${amount})">¥${formattedAmount} で支援する</button>
+            `;
+            preDiv.classList.add('show');
+        }
+
+        function showConfirmModal(category, amount) {
+            currentSupport.category = category;
+            currentSupport.amount = amount;
+            
+            document.getElementById('confirm-category').textContent = 
+                categoryNames[category];
+            document.getElementById('confirm-amount').textContent = 
+                `¥${amount.toLocaleString()}`;
+            
+            document.getElementById('confirmModal').classList.add('show');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('show');
+        }
+
+        function goToPayment() {
+            // 決済ページへ遷移（実際の決済システムに合わせて変更）
+            alert(`決済ページへ遷移します\n支援先: ${categoryNames[currentSupport.category]}\n金額: ¥${currentSupport.amount.toLocaleString()}`);
+            // window.location.href = `payment.html?category=${currentSupport.category}&amount=${currentSupport.amount}`;
+        }
+
+        document.getElementById('confirmModal').addEventListener('click', function(e) {
+            if (e.target === this) closeConfirmModal();
+        });
+
+        (function () {
+            const params = new URLSearchParams(location.search);
+            const cat = params.get('category');
+            if (!cat) return;
+
+            const el = document.getElementById(`cat-${cat}`);
+            if (!el) return;
+
+            setTimeout(() => {
+                el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const input = el.querySelector('input');
+                if (input) input.focus();
+            }, 100);
+        })();
+    </script>
+</body>
+</html>

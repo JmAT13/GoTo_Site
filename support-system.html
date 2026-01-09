@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>支援の仕組みと私たちの選択 | GO TO HAPPY LIFE</title>
+    <meta name="description" content="GO TO HAPPY LIFEが自社で寄付プラットフォームを持つ理由。お金の流れ、意思決定、責任の所在を明確にする仕組みについて。">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 支援の仕組みページ専用スタイル */
+        
+        /* ヒーローセクション */
+        .system-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .system-hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 0;
+        }
+        
+        .system-hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(43,80,130,0.7), rgba(43,80,130,0.85));
+        }
+        
+        .system-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--white);
+            padding: 0 24px;
+            max-width: 800px;
+        }
+        
+        .system-hero-content h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .system-hero-content p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        /* セクションスタイル */
+        .system-section {
+            margin-bottom: 4rem;
+        }
+        
+        .system-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .system-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid var(--viridian);
+        }
+        
+        .system-lead {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .system-text {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--text);
+            margin-bottom: 1rem;
+        }
+        
+        .system-text:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 画像付きセクション */
+        .image-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            margin: 3rem 0;
+        }
+        
+        .image-section.reverse {
+            direction: rtl;
+        }
+        
+        .image-section.reverse > * {
+            direction: ltr;
+        }
+        
+        .image-section-img {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .image-section-img img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            border-radius: 0;
+        }
+        
+        .image-section-content {
+            padding: 1rem 0;
+        }
+
+        /* フルワイド画像 */
+        .full-image {
+            margin: 3rem 0;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .full-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            border-radius: 0;
+        }
+
+        /* 強調ボックス */
+        .highlight-box {
+            background: var(--primary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .highlight-box p {
+            color: var(--indigo);
+            font-size: 1.05rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+        
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .highlight-box strong {
+            font-weight: 700;
+        }
+
+        /* リスト */
+        .system-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+        
+        .system-list li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.8;
+        }
+        
+        .system-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--viridian);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .system-list.arrow li::before {
+            content: "→";
+            color: var(--red);
+        }
+
+        /* 番号付きリスト */
+        .numbered-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+            counter-reset: item;
+        }
+        
+        .numbered-list li {
+            padding: 1rem 0;
+            padding-left: 3rem;
+            position: relative;
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.8;
+            border-bottom: 1px dashed var(--border);
+        }
+        
+        .numbered-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .numbered-list li::before {
+            counter-increment: item;
+            content: counter(item);
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+            width: 28px;
+            height: 28px;
+            background: var(--viridian);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* ポイントボックス */
+        .point-box {
+            background: var(--viridian-light);
+            border-left: 4px solid var(--viridian);
+            padding: 1.5rem;
+            border-radius: 0 12px 12px 0;
+            margin: 2rem 0;
+        }
+        
+        .point-box p {
+            color: var(--viridian-dark);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+        
+        .point-box .emoji {
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+        }
+
+        /* 連携セクション */
+        .partnership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .partnership-item {
+            background: var(--white);
+            border: 2px solid var(--viridian);
+            border-radius: 8px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+        
+        .partnership-item .label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .partnership-item .value {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--indigo);
+        }
+
+        /* 比較カード */
+        .comparison-section {
+            margin: 3rem 0;
+        }
+        
+        .comparison-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+        
+        .compare-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        
+        .compare-card {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+        
+        .compare-card--other {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        
+        .compare-card--ours {
+            background: linear-gradient(135deg, var(--viridian) 0%, #007a5e 100%);
+            color: var(--white);
+            transform: scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 155, 119, 0.3);
+        }
+        
+        .compare-card-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+        }
+        
+        .compare-card--other .compare-card-header {
+            background: #e9ecef;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .compare-card--ours .compare-card-header {
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .compare-card-icon {
+            font-size: 1.5rem;
+        }
+        
+        .compare-card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0;
+        }
+        
+        .compare-card--other .compare-card-header h3 {
+            color: #495057;
+        }
+        
+        .compare-card-badge {
+            background: var(--primary);
+            color: var(--indigo);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-left: auto;
+        }
+        
+        .compare-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .compare-card-list li {
+            display: flex;
+            padding: 1rem 1.5rem;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+        
+        .compare-card--other .compare-card-list li {
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .compare-card--ours .compare-card-list li {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .compare-card-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .compare-label {
+            flex-shrink: 0;
+            width: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .compare-card--other .compare-label {
+            background: #dee2e6;
+            color: #495057;
+        }
+        
+        .compare-card--ours .compare-label {
+            background: rgba(255,255,255,0.2);
+            color: var(--white);
+        }
+        
+        .compare-value {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .compare-card--other .compare-value {
+            color: #6c757d;
+        }
+        
+        .compare-card--ours .compare-value {
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .compare-card-footer {
+            padding: 1.2rem 1.5rem;
+            background: rgba(0,0,0,0.15);
+            text-align: center;
+        }
+        
+        .compare-card-footer p {
+            margin: 0;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* 結論ボックス */
+        .conclusion-box {
+            background: var(--indigo);
+            color: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin: 3rem 0;
+        }
+        
+        .conclusion-box h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .conclusion-box p {
+            font-size: 1rem;
+            line-height: 2;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+        }
+        
+        .conclusion-box p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .conclusion-box .strong-text {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .conclusion-box .system-list li {
+            color: var(--white);
+        }
+        
+        .conclusion-box .system-list li::before {
+            color: var(--primary);
+        }
+
+        /* 最後に */
+        .final-section {
+            background: var(--primary);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+        }
+        
+        .final-section h3 {
+            font-size: 1.3rem;
+            color: var(--indigo);
+            margin-bottom: 1.5rem;
+        }
+        
+        .final-section p {
+            font-size: 1rem;
+            line-height: 2;
+            color: var(--indigo);
+            margin-bottom: 1rem;
+        }
+        
+        .final-section .strong-message {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(43,80,130,0.2);
+        }
+
+        /* CTA（お問い合わせのみ） */
+        .cta-contact {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--viridian-light);
+            border-radius: 12px;
+        }
+        
+        .cta-contact p {
+            font-size: 1rem;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-contact .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--viridian);
+            color: var(--white);
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .cta-contact .btn:hover {
+            background: var(--viridian-dark);
+            transform: translateY(-2px);
+        }
+
+        /* 補足説明 */
+        .supplement-section {
+            margin-top: 3rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .supplement-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--indigo);
+            margin-bottom: 1.5rem;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .system-hero {
+                height: 40vh;
+                min-height: 300px;
+            }
+            
+            .system-hero-content h1 {
+                font-size: 1.6rem;
+            }
+            
+            .image-section {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .image-section.reverse {
+                direction: ltr;
+            }
+            
+            .image-section-img img {
+                height: 220px;
+            }
+            
+            .partnership-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .system-title {
+                font-size: 1.2rem;
+            }
+            
+            .highlight-box,
+            .final-section,
+            .conclusion-box {
+                padding: 1.5rem;
+            }
+            
+            .full-image img {
+                height: 220px;
+            }
+            
+            .compare-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .compare-card--ours {
+                transform: none;
+                order: -1;
+            }
+            
+            .compare-card-header {
+                padding: 1.2rem;
+            }
+            
+            .compare-card-list li {
+                padding: 0.8rem 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <span>GO TO HAPPY LIFE</span>
+            </a>
+
+            <nav class="nav">
+                <a href="index.html">TOP</a>
+                <a href="board.html">団体役員</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html" class="active">支援の仕組み</a>
+                <a href="news.html">お知らせ</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="donate.html">寄付・支援</a>
+            </nav>
+
+            <button class="mobile-menu-btn" aria-label="メニュー">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="system-hero" style="margin-top: 72px;">
+        <img src="anirudh.jpg" alt="医療現場">
+        <div class="system-hero-overlay"></div>
+        <div class="system-hero-content">
+            <h1>支援の仕組みと私たちの選択</h1>
+            <p>なぜ、私たちは「自社の寄付プラットフォーム」を持つのか</p>
+        </div>
+    </section>
+
+    <main class="main">
+
+        <section class="section">
+            
+            <!-- イントロ -->
+            <div class="system-section">
+                <div class="highlight-box">
+                    <p><strong>GO TO HAPPY LIFE は、<br>寄付を集めるために活動している団体ではありません。</strong></p>
+                    <p><strong>事業を完成させるために、支援を必要としている団体です。</strong></p>
+                    <p>だから私たちは、<br><strong>寄付の仕組みを外部に丸投げしない選択</strong>をしました。</p>
+                </div>
+            </div>
+
+            <!-- 外部任せにしなかった理由（画像付き） -->
+            <div class="image-section">
+                <div class="image-section-img">
+                    <img src="tim.jpg" alt="現場の課題">
+                </div>
+                <div class="image-section-content">
+                    <h2 class="system-title">外部任せにしなかった理由</h2>
+                    
+                    <p class="system-text">寄付プラットフォームは便利です。<br>多くの人に届ける力もあります。</p>
+                    
+                    <p class="system-text">一方で、<br>そこにはどうしても「距離」が生まれます。</p>
+                    
+                    <ul class="system-list">
+                        <li>お金の流れが見えにくい</li>
+                        <li>意思決定に時間がかかる</li>
+                        <li>現場の判断が反映されにくい</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="point-box">
+                <p>現場で動く団体にとって、その距離は致命的になる。<br>そう判断しました。</p>
+            </div>
+
+            <!-- 私たちの仕組み（画像付き） -->
+            <div class="image-section reverse">
+                <div class="image-section-img">
+                    <img src="james-la.jpg" alt="施設の廊下">
+                </div>
+                <div class="image-section-content">
+                    <h2 class="system-title">私たちの仕組み</h2>
+                    
+                    <p class="system-text">GO TO HAPPY LIFE は、<br>自社で寄付・支援を受け付けるプラットフォームを持ち、<br>自社主体で事業を組み立てるNPO法人です。</p>
+                    
+                    <div class="highlight-box">
+                        <p>支援は、<br><strong>私たちの口座に直接入り、</strong><br><strong>私たちの判断で、</strong><br><strong>私たちが責任を持って使います。</strong></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TAmJ等との連携について -->
+            <div class="system-section">
+                <h2 class="system-title">TAmJ等との連携について</h2>
+                
+                <p class="system-text">私たちは、<br>すべてを自団体だけで完結させようとは考えていません。</p>
+                
+                <p class="system-text">医療、福祉、現場実装、事業化。<br>それぞれに専門があります。</p>
+                
+                <p class="system-text">GO TO HAPPY LIFE は、<br>TAmJ 等のパートナーと組み、<br>役割を分けた上で、<strong>最終責任は自社で持つ</strong>という形を取っています。</p>
+                
+                <div class="partnership-grid">
+                    <div class="partnership-item">
+                        <div class="label">企画・思想設計</div>
+                        <div class="value">GO TO HAPPY LIFE</div>
+                    </div>
+                    <div class="partnership-item">
+                        <div class="label">実装・運営・事業化</div>
+                        <div class="value">TAmJ 等</div>
+                    </div>
+                    <div class="partnership-item">
+                        <div class="label">意思決定・会計責任</div>
+                        <div class="value">GO TO HAPPY LIFE</div>
+                    </div>
+                </div>
+                
+                <div class="point-box">
+                    <p><span class="emoji">👉</span>「誰が決めて、誰が責任を持つか」を曖昧にしません。</p>
+                </div>
+            </div>
+
+            <!-- お金の流れを、団体の中で完結させる -->
+            <div class="system-section">
+                <h2 class="system-title">お金の流れを、団体の中で完結させる</h2>
+                
+                <p class="system-text">支援金の流れは、シンプルです。</p>
+                
+                <ol class="numbered-list">
+                    <li>支援者が、当団体のプラットフォームを通じて支援</li>
+                    <li>支援金は、GO TO HAPPY LIFE の口座へ入金</li>
+                    <li>当団体が責任を持って、事業・活動に使用</li>
+                    <li>実施内容・進捗は、活動報告として公開</li>
+                </ol>
+                
+                <div class="point-box">
+                    <p>外部の「財団口座」や<br>実体の見えない中継先は存在しません。</p>
+                </div>
+            </div>
+
+            <!-- フルワイド画像 -->
+            <div class="full-image">
+                <img src="future.jpg" alt="未来への展望">
+            </div>
+
+            <!-- なぜ、それが「安心」につながるのか -->
+            <div class="system-section">
+                <h2 class="system-title">なぜ、それが「安心」につながるのか</h2>
+                
+                <ul class="system-list">
+                    <li>判断が速い</li>
+                    <li>責任の所在が明確</li>
+                    <li>お金の行き先を説明できる</li>
+                    <li>問題が起きたとき、逃げ場がない</li>
+                </ul>
+                
+                <p class="system-text">これは、<br>団体にとっては厳しい構造です。</p>
+                
+                <p class="system-text">でも私たちは、<br><strong>厳しい構造こそが、支援者の安心につながる</strong>と考えています。</p>
+            </div>
+
+            <!-- 私たちは、信頼を仕組みで担保する -->
+            <div class="system-section">
+                <h2 class="system-title">私たちは、信頼を仕組みで担保する</h2>
+                
+                <p class="system-text">「信じてください」とは言いません。</p>
+                
+                <ul class="system-list arrow">
+                    <li>お金の流れ</li>
+                    <li>意思決定の場所</li>
+                    <li>事業の責任者</li>
+                </ul>
+                
+                <p class="system-text">それらを、<br><strong>見える形で置いておくこと</strong>が、<br>私たちのやり方です。</p>
+            </div>
+
+            <!-- この仕組みで、何を目指すのか -->
+            <div class="system-section">
+                <h2 class="system-title">この仕組みで、何を目指すのか</h2>
+                
+                <ul class="system-list">
+                    <li>支援が集まった時点で止まらない</li>
+                    <li>事業として、最後まで完成させる</li>
+                    <li>医療・福祉の現場に、確実に残す</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <p><strong>GO TO HAPPY LIFE は、<br>寄付を「ゴール」にしません。</strong></p>
+                    <p><strong>完成させるところまでが、私たちの仕事です。</strong></p>
+                </div>
+            </div>
+
+            <!-- 比較表セクション -->
+            <div class="comparison-section">
+                <h2 class="system-title">外部プラットフォームを使う場合／使わない場合</h2>
+                <p class="system-lead">― 支援の仕組みの違い ―</p>
+                
+                <p class="comparison-note">※目的に応じて外部プラットフォームを利用する場合もあります</p>
+                
+                <div class="compare-cards">
+                    <!-- 外部プラットフォーム -->
+                    <div class="compare-card compare-card--other">
+                        <div class="compare-card-header">
+                            <span class="compare-card-icon">📤</span>
+                            <h3>外部プラットフォーム</h3>
+                        </div>
+                        <ul class="compare-card-list">
+                            <li>
+                                <span class="compare-label">入口</span>
+                                <span class="compare-value">外部サービスのページ</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">受取</span>
+                                <span class="compare-value">決済代行口座</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">流れ</span>
+                                <span class="compare-value">支援者 → 外部 → 団体</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">判断</span>
+                                <span class="compare-value">外部ルールに依存</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">変更</span>
+                                <span class="compare-value">事前申請・制約あり</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">責任</span>
+                                <span class="compare-value">分散しやすい</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">説明</span>
+                                <span class="compare-value">フローが複雑</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">完了</span>
+                                <span class="compare-value">達成＝一区切り</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- GO TO HAPPY LIFE -->
+                    <div class="compare-card compare-card--ours">
+                        <div class="compare-card-header">
+                            <span class="compare-card-icon">✓</span>
+                            <h3>GO TO HAPPY LIFE</h3>
+                            <span class="compare-card-badge">自社主体</span>
+                        </div>
+                        <ul class="compare-card-list">
+                            <li>
+                                <span class="compare-label">入口</span>
+                                <span class="compare-value">当団体の公式サイト</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">受取</span>
+                                <span class="compare-value">当団体の口座へ直接</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">流れ</span>
+                                <span class="compare-value">支援者 → 団体（直接）</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">判断</span>
+                                <span class="compare-value">団体内で即時判断</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">変更</span>
+                                <span class="compare-value">現場判断で柔軟対応</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">責任</span>
+                                <span class="compare-value">当団体が一括で持つ</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">説明</span>
+                                <span class="compare-value">シンプルで明快</span>
+                            </li>
+                            <li>
+                                <span class="compare-label">完了</span>
+                                <span class="compare-value">完成まで責任を持つ</span>
+                            </li>
+                        </ul>
+                        <div class="compare-card-footer">
+                            <p>逃げ場のない構造で、信頼を担保する</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 補足説明 -->
+            <div class="supplement-section">
+                <h3 class="supplement-title">外部プラットフォームは「悪」ではありません</h3>
+                
+                <p class="system-text">外部寄付プラットフォームは、<br>多くの人に活動を知ってもらうための有効な手段のひとつです。</p>
+                
+                <p class="system-text">実際、<br>私たちも目的に応じて活用することがあります。</p>
+                
+                <p class="system-text" style="margin-top: 2rem;"><strong>ただし――</strong></p>
+            </div>
+
+            <!-- 私たちが自社主体を選んだ理由 -->
+            <div class="system-section">
+                <h3 class="supplement-title">私たちが自社主体を選んだ理由</h3>
+                
+                <p class="system-text">GO TO HAPPY LIFE が最も重視しているのは、<br><strong>事業を最後まで完成させること</strong>です。</p>
+                
+                <p class="system-text">寄付が集まった瞬間をゴールにせず、<br>現場に残る形になるまで責任を持つ。</p>
+                
+                <p class="system-text">そのためには、</p>
+                
+                <ul class="system-list">
+                    <li>お金の流れ</li>
+                    <li>意思決定</li>
+                    <li>説明責任</li>
+                </ul>
+                
+                <p class="system-text">これらを団体の中で完結させる必要があると判断しました。</p>
+            </div>
+
+            <!-- 自社主体の仕組みは、団体にとって楽ではありません -->
+            <div class="system-section">
+                <h3 class="supplement-title">自社主体の仕組みは、団体にとって楽ではありません</h3>
+                
+                <p class="system-text">正直に言えば、<br>この仕組みは団体側にとってかなり厳しい。</p>
+                
+                <ul class="system-list">
+                    <li>管理も</li>
+                    <li>説明も</li>
+                    <li>トラブル対応も</li>
+                </ul>
+                
+                <p class="system-text">すべて自分たちに返ってきます。</p>
+                
+                <p class="system-text">でも私たちは、<br><strong>その厳しさこそが、支援者の安心につながる</strong>と考えています。</p>
+            </div>
+
+            <!-- 結論 -->
+            <div class="conclusion-box">
+                <h3>結論として</h3>
+                <p>GO TO HAPPY LIFE は、</p>
+                <ul class="system-list">
+                    <li>集めるより</li>
+                    <li>管理するより</li>
+                    <li>見せるより</li>
+                </ul>
+                <p><strong>「完成させる責任」</strong>を選びました。</p>
+                <p class="strong-text">支援の方法は選べる。<br>でも、責任の持ち方は選び続けなければならない。</p>
+            </div>
+
+            <!-- 最後に -->
+            <div class="final-section">
+                <h3>最後に</h3>
+                <p>このやり方は、<br>簡単ではありません。</p>
+                <p>管理も、説明も、責任も、<br>すべて自分たちに返ってきます。</p>
+                <p>それでも私たちは、<br><strong>自分たちの名前で、最後までやり切る</strong><br>この構造を選びました。</p>
+                <p class="strong-message">集めるより、終わらせる。<br>私たちは、そこまで引き受ける。</p>
+            </div>
+
+            <!-- CTA（お問い合わせのみ） -->
+            <div class="cta-contact">
+                <p>支援の仕組みについて、ご質問があればお気軽にお問い合わせください。</p>
+                <a href="contact.html" class="btn">お問い合わせ</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-statement">
+                <p>集めるより、終わらせる。<br>私たちは、そこまで引き受ける。</p>
+            </div>
+
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span>GO TO HAPPY LIFE</span>
+                </a>
+
+                <nav class="footer-nav">
+                    <a href="index.html">TOP</a>
+                    <a href="board.html">団体役員</a>
+                    <a href="about.html">団体について</a>
+                    <a href="support-system.html">支援の仕組み</a>
+                    <a href="news.html">お知らせ</a>
+                    <a href="contact.html">お問い合わせ</a>
+                    <a href="donate.html">寄付・支援</a>
+                </nav>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                    <a href="sitepolicy.html">サイトポリシー</a>
+                    <a href="tax-deduction.html">寄付金控除について</a>
+                </div>
+                <p class="footer-copy">© GO TO HAPPY LIFE</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
