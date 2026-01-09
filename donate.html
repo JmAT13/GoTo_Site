@@ -275,7 +275,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.6);
             display: none;
             justify-content: center;
             align-items: center;
@@ -289,30 +289,43 @@
         
         .modal-content {
             background: var(--white);
-            padding: 2.5rem;
-            border-radius: 15px;
+            padding: 0;
+            border-radius: 4px;
             max-width: 480px;
             width: 100%;
             text-align: center;
             animation: modalIn 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            overflow: hidden;
         }
         
         @keyframes modalIn {
-            from { opacity: 0; transform: scale(0.9); }
+            from { opacity: 0; transform: scale(0.95); }
             to { opacity: 1; transform: scale(1); }
         }
         
+        .confirm-modal .modal-header {
+            background: var(--indigo);
+            padding: 1.2rem 2rem;
+        }
+        
         .confirm-modal .modal-title {
-            font-size: 1.3rem;
-            color: var(--indigo);
-            margin-bottom: 1.5rem;
-            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--white);
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+        
+        .confirm-modal .modal-body {
+            padding: 2rem;
         }
         
         .confirm-modal .confirm-details {
-            background: var(--primary-light);
-            border-radius: 10px;
-            padding: 1.5rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 2px;
+            padding: 0;
             margin-bottom: 1.5rem;
             text-align: left;
         }
@@ -320,8 +333,8 @@
         .confirm-modal .confirm-row {
             display: flex;
             justify-content: space-between;
-            padding: 0.6rem 0;
-            border-bottom: 1px solid var(--border);
+            padding: 1rem 1.2rem;
+            border-bottom: 1px solid #e9ecef;
         }
         
         .confirm-modal .confirm-row:last-child {
@@ -329,40 +342,43 @@
         }
         
         .confirm-modal .confirm-label {
-            color: var(--text-light);
+            color: #6c757d;
             font-size: 0.9rem;
+            font-weight: 500;
         }
         
         .confirm-modal .confirm-value {
             color: var(--indigo);
-            font-weight: bold;
-            font-size: 1rem;
+            font-weight: 600;
+            font-size: 0.95rem;
         }
         
         .confirm-modal .confirm-value.amount {
-            color: var(--red);
-            font-size: 1.3rem;
+            color: var(--indigo);
+            font-size: 1.2rem;
+            font-weight: 700;
         }
         
         .confirm-modal .confirm-note {
-            background: var(--primary);
-            border-left: 3px solid var(--indigo);
-            padding: 1rem;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 1rem 1.2rem;
             margin-bottom: 1.5rem;
             text-align: left;
-            border-radius: 0 8px 8px 0;
+            border-radius: 2px;
         }
         
         .confirm-modal .confirm-note p {
-            font-size: 0.9rem;
-            color: var(--indigo);
+            font-size: 0.85rem;
+            color: #6c757d;
             line-height: 1.7;
+            margin: 0;
         }
         
         .confirm-modal .confirm-message {
-            font-size: 1.1rem;
-            color: var(--viridian);
-            font-weight: bold;
+            font-size: 0.95rem;
+            color: var(--indigo);
+            font-weight: 600;
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -370,33 +386,40 @@
         .modal-buttons {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 0.6rem;
         }
         
         .modal-buttons .btn-modal-primary {
-            background: var(--viridian);
+            background: var(--indigo);
             color: var(--white);
             padding: 1rem 2rem;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: bold;
+            border-radius: 2px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            letter-spacing: 0.03em;
         }
         
         .modal-buttons .btn-modal-primary:hover {
-            background: var(--viridian-dark);
-            transform: translateY(-2px);
+            background: var(--indigo-light);
         }
         
         .modal-buttons .btn-modal-secondary {
             background: transparent;
-            color: var(--text-light);
+            color: #6c757d;
             padding: 0.8rem 1.5rem;
-            border: none;
-            font-size: 0.95rem;
+            border: 1px solid #dee2e6;
+            border-radius: 2px;
+            font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .modal-buttons .btn-modal-secondary:hover {
+            background: #f8f9fa;
+            border-color: #adb5bd;
         }
 
         /* レスポンシブ */
@@ -548,28 +571,32 @@
     <!-- 確認モーダル -->
     <div class="modal-overlay" id="confirmModal">
         <div class="modal-content confirm-modal">
-            <h3 class="modal-title">ご支援内容の確認</h3>
-            
-            <div class="confirm-details">
-                <div class="confirm-row">
-                    <span class="confirm-label">支援先</span>
-                    <span class="confirm-value" id="confirm-category"></span>
-                </div>
-                <div class="confirm-row">
-                    <span class="confirm-label">金額</span>
-                    <span class="confirm-value amount" id="confirm-amount"></span>
-                </div>
+            <div class="modal-header">
+                <h3 class="modal-title">ご支援内容の確認</h3>
             </div>
             
-            <div class="confirm-note">
-                <p>決済完了後、ご登録のメールアドレスに確認メールをお送りします。領収書は確定申告時期（1月下旬）に発送いたします。</p>
-            </div>
-            
-            <p class="confirm-message">あなたの支援が、現場を前に進めます。</p>
-            
-            <div class="modal-buttons">
-                <button class="btn-modal-primary" onclick="goToPayment()">決済ページへ進む</button>
-                <button class="btn-modal-secondary" onclick="closeConfirmModal()">戻る</button>
+            <div class="modal-body">
+                <div class="confirm-details">
+                    <div class="confirm-row">
+                        <span class="confirm-label">支援先</span>
+                        <span class="confirm-value" id="confirm-category"></span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="confirm-label">金額</span>
+                        <span class="confirm-value amount" id="confirm-amount"></span>
+                    </div>
+                </div>
+                
+                <div class="confirm-note">
+                    <p>決済完了後、ご登録のメールアドレスに確認メールをお送りします。領収書は確定申告時期（1月下旬）に発送いたします。</p>
+                </div>
+                
+                <p class="confirm-message">あなたの支援が、現場を前に進めます。</p>
+                
+                <div class="modal-buttons">
+                    <button class="btn-modal-primary" onclick="goToPayment()">決済ページへ進む</button>
+                    <button class="btn-modal-secondary" onclick="closeConfirmModal()">戻る</button>
+                </div>
             </div>
         </div>
     </div>
