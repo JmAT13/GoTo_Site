@@ -11,30 +11,32 @@
     <style id="global-override">
         /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
 
-        /* --- 余白（一番重要） --- */
-        .section { padding-top: 120px !important; padding-bottom: 120px !important; }
-        .main > section { padding-top: 120px !important; padding-bottom: 120px !important; }
+        /* --- 余白（一番重要）--- */
+        /* section padding 140px: Bob指摘「余白を倍にするだけで高級感が出る」 */
+        .section { padding-top: 140px !important; padding-bottom: 140px !important; }
+        .main > section { padding-top: 140px !important; padding-bottom: 140px !important; }
 
         /* --- フォント階層 --- */
+        /* H1 64px / H2 40px / 本文 20px: Bob指摘「見出しが小さいのが一番Appleから遠い」 */
         .hero-mission-text {
-            font-size: clamp(38px, 5.5vw, 68px) !important;
+            font-size: clamp(40px, 5.5vw, 72px) !important;
+            font-weight: 900 !important;
+            line-height: 1.15 !important;
+            letter-spacing: -0.03em !important;
+        }
+        h1:not(.hero-mission-text) {
+            font-size: clamp(32px, 4.5vw, 64px) !important;
             font-weight: 900 !important;
             line-height: 1.2 !important;
             letter-spacing: -0.025em !important;
         }
-        h1:not(.hero-mission-text) {
-            font-size: clamp(30px, 4vw, 52px) !important;
-            font-weight: 900 !important;
-            line-height: 1.25 !important;
-            letter-spacing: -0.02em !important;
-        }
         h2 {
-            font-size: clamp(22px, 3vw, 40px) !important;
-            font-weight: 700 !important;
+            font-size: clamp(24px, 3vw, 40px) !important;
+            font-weight: 800 !important;
             letter-spacing: -0.015em !important;
         }
-        h3 { font-size: clamp(18px, 2vw, 26px) !important; font-weight: 700 !important; }
-        p, li { font-size: clamp(16px, 1.4vw, 20px) !important; line-height: 2 !important; }
+        h3 { font-size: clamp(18px, 2vw, 28px) !important; font-weight: 700 !important; }
+        p, li { font-size: clamp(17px, 1.4vw, 20px) !important; line-height: 2 !important; }
 
         /* 小文字ラベル等は除外 */
         .footer-copy, .page-header-en, .hero-mission-label,
