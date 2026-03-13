@@ -1,273 +1,44 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プライバシーポリシー | GO TO HAPPY LIFE</title>
-    <meta name="description" content="GO TO HAPPY LIFEのプライバシーポリシー。個人情報の取り扱いについて。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style id="global-override">
-        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
-
-        /* --- 余白（一番重要）--- */
-        /* section padding 140px: Bob指摘「余白を倍にするだけで高級感が出る」 */
-        .section { padding-top: 140px !important; padding-bottom: 140px !important; }
-        .main > section { padding-top: 140px !important; padding-bottom: 140px !important; }
-
-        /* --- フォント階層 --- */
-        /* H1 64px / H2 40px / 本文 20px: Bob指摘「見出しが小さいのが一番Appleから遠い」 */
-        .hero-mission-text {
-            font-size: clamp(40px, 5.5vw, 72px) !important;
-            font-weight: 900 !important;
-            line-height: 1.15 !important;
-            letter-spacing: -0.03em !important;
-        }
-        h1:not(.hero-mission-text) {
-            font-size: clamp(32px, 4.5vw, 64px) !important;
-            font-weight: 900 !important;
-            line-height: 1.2 !important;
-            letter-spacing: -0.025em !important;
-        }
-        h2 {
-            font-size: clamp(24px, 3vw, 40px) !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.015em !important;
-        }
-        h3 { font-size: clamp(18px, 2vw, 28px) !important; font-weight: 700 !important; }
-        p, li { font-size: clamp(17px, 1.4vw, 20px) !important; line-height: 2 !important; }
-
-        /* 小文字ラベル等は除外 */
-        .footer-copy, .page-header-en, .hero-mission-label,
-        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
-        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
-            font-size: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* --- statement-lead 強化 --- */
-        .statement-lead {
-            font-size: clamp(24px, 3.8vw, 48px) !important;
-            font-weight: 900 !important;
-            line-height: 1.35 !important;
-            letter-spacing: -0.02em !important;
-        }
-
-        /* --- 影・枠線・装飾を除去 --- */
-        .about-block, .story-item, .gallery-card, .board-card-minimal,
-        .news-item, .action-card, .card-tilt, .intro-highlight {
-            box-shadow: none !important;
-            border: none !important;
-        }
-        .about-block {
-            padding: 0 0 2.5rem 0 !important;
-            background: transparent !important;
-            border-bottom: 1px solid #f0f0f0 !important;
-            margin-bottom: 3rem !important;
-        }
-        .about-block:last-child { border-bottom: none !important; }
-        .intro-highlight {
-            background: transparent !important;
-            padding: 80px 0 !important;
-            max-width: 720px !important;
-            margin: 0 auto !important;
-        }
-        .card-tilt { transform: none !important; }
-        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
-
-        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
-        .hero-video-section {
-            height: 100vh !important;
-            min-height: 600px !important;
-        }
-        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
-        .hero-video-content {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            text-align: center !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            padding: 0 2rem !important;
-        }
-        .hero-mission-sub {
-            font-size: clamp(15px, 1.4vw, 18px) !important;
-            line-height: 1.9 !important;
-            opacity: 0.88 !important;
-        }
-        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
-
-        /* --- スクロールインジケーターアニメーション --- */
-        @keyframes scrollPulse {
-            0%, 100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.4); opacity: 0.3; }
-        }
-        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
-
-        /* --- index-flow 写真×文章 --- */
-        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
-        .index-flow-img img { border-radius: 4px !important; }
-        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
-
-        /* --- page-header --- */
-        .page-header { padding: 9rem 2rem 4rem !important; }
-        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
-
-        /* --- question-section --- */
-        .question-section {
-            padding: 60px 0 !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        /* --- footer statement 強化 --- */
-        .footer-statement p {
-            font-size: clamp(17px, 1.8vw, 22px) !important;
-            font-weight: 700 !important;
-            line-height: 1.9 !important;
-            color: rgba(255,255,255,0.92) !important;
-        }
-
-        /* --- SNSバー --- */
-        .sns-bar-label { font-size: 0.68rem !important; }
-
-        /* --- モバイル --- */
-        @media (max-width: 768px) {
-            .section, .main > section {
-                padding-top: 72px !important;
-                padding-bottom: 72px !important;
-            }
-            .hero-video-section { height: 100svh !important; }
-            .index-flow { gap: 3rem !important; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
-    <header class="header">
+<title>プライバシーポリシー | GO TO HAPPY LIFE</title></head><body>    <header class="header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <span>GO TO HAPPY LIFE</span>
-            </a>
-
+            <a href="index.html" class="logo">GO TO HAPPY LIFE</a>
             <nav class="nav">
                 <a href="index.html">TOP</a>
                 <a href="about.html">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
                 <a href="donate.html">寄付する</a>
                 <a href="tax-deduction.html">寄付金控除</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
-
-            <button class="mobile-menu-btn" aria-label="メニュー">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <h1>プライバシーポリシー</h1>
-        <p>個人情報の取り扱いについて</p>
-    </div>
-
-    <main class="main">
-
-        <section class="section">
-            <p style="margin-bottom: 32px;">特定非営利活動法人 GO TO HAPPY LIFE（以下「当法人」）は、個人情報の重要性を認識し、その保護を徹底するため、以下のとおりプライバシーポリシーを定めます。</p>
-
-            <div class="about-block">
-                <h3>個人情報の取得</h3>
-                <p>当法人は、お問い合わせ、活動へのご参加、ご寄付などの際に、お名前、ご連絡先等の個人情報をお預かりすることがあります。</p>
-                <p>個人情報の取得にあたっては、利用目的を明示し、適法かつ公正な手段により行います。</p>
-            </div>
-
-            <div class="about-block">
-                <h3>個人情報の利用目的</h3>
-                <p>当法人は、取得した個人情報を以下の目的で利用します。</p>
-                <ul style="margin: 16px 0; padding-left: 24px;">
-                    <li style="margin-bottom: 8px;">お問い合わせへの回答</li>
-                    <li style="margin-bottom: 8px;">活動に関するご連絡・ご案内</li>
-                    <li style="margin-bottom: 8px;">寄付・支援に関する手続き・ご報告</li>
-                    <li style="margin-bottom: 8px;">当法人の活動に関する情報提供</li>
-                </ul>
-            </div>
-
-            <div class="about-block">
-                <h3>個人情報の第三者提供</h3>
-                <p>当法人は、以下の場合を除き、個人情報を第三者に提供することはありません。</p>
-                <ul style="margin: 16px 0; padding-left: 24px;">
-                    <li style="margin-bottom: 8px;">ご本人の同意がある場合</li>
-                    <li style="margin-bottom: 8px;">法令に基づく場合</li>
-                    <li style="margin-bottom: 8px;">人の生命、身体または財産の保護のために必要な場合</li>
-                </ul>
-            </div>
-
-            <div class="about-block">
-                <h3>個人情報の管理</h3>
-                <p>当法人は、個人情報の漏洩、滅失、毀損等を防止するため、適切な安全管理措置を講じます。</p>
-                <p>個人情報を取り扱う職員に対しては、適切な監督を行います。</p>
-            </div>
-
-            <div class="about-block">
-                <h3>個人情報の開示・訂正・削除</h3>
-                <p>ご本人から個人情報の開示、訂正、削除等のご請求があった場合は、ご本人であることを確認のうえ、速やかに対応いたします。</p>
-            </div>
-
-            <div class="about-block">
-                <h3>お問い合わせ</h3>
-                <p>本ポリシーに関するお問い合わせは、<a href="contact.html" style="color: var(--primary);">お問い合わせフォーム</a>よりご連絡ください。</p>
-            </div>
-
-            <div class="about-block">
-                <h3>改定について</h3>
-                <p>当法人は、法令の変更や必要に応じて、本ポリシーを改定することがあります。改定後のポリシーは、本ウェブサイトに掲載した時点から効力を生じるものとします。</p>
-            </div>
-
-            <p style="margin-top: 40px; text-align: right; color: var(--text-light); font-size: 0.9rem;">
-                制定日：2025年1月6日<br>
-                特定非営利活動法人 GO TO HAPPY LIFE
-            </p>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
+<div class="page-header"><div class="narrow"><span class="kicker">Privacy policy</span><h1>プライバシーポリシー</h1><p class="lead muted">個人情報の取り扱いについて</p></div></div>
+<main><section class="section-tight"><div class="narrow"><div class="card-lite"><h3>個人情報の取得</h3><p class="muted">お問い合わせ、活動参加、ご寄付などの際に、お名前、ご連絡先などを取得する場合があります。</p></div><div class="card-lite"><h3>利用目的</h3><p class="muted">お問い合わせへの回答、活動のご案内、寄付手続き、活動報告の送付などに利用します。</p></div><div class="card-lite"><h3>第三者提供</h3><p class="muted">法令に基づく場合などを除き、ご本人の同意なく第三者へ提供しません。</p></div><div class="card-lite"><h3>管理</h3><p class="muted">漏えい、滅失、毀損を防ぐため、適切な安全管理措置を講じます。</p></div><div class="card-lite"><h3>お問い合わせ</h3><p class="muted">本ポリシーに関するお問い合わせは、<a href="contact.html">お問い合わせページ</a>よりご連絡ください。</p></div></div></section></main>
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-statement">
-                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
+                <p class="lead">GO TO HAPPY LIFE は、<br>社会課題を事業として完成させるNPOです。</p>
             </div>
-
-            <div class="footer-top">
-                <a href="index.html" class="footer-logo">
-                    <span>GO TO HAPPY LIFE</span>
-                </a>
-                <nav class="footer-nav">
-                    <a href="index.html">TOP</a>
-                    <a href="about.html">団体について</a>
-                    <a href="support-system.html">支援の仕組み</a>
-                    <a href="donate.html">寄付する</a>
-                    <a href="tax-deduction.html">寄付金控除</a>
-                    <a href="contact.html">お問い合わせ</a>
-                </nav>
+            <div class="footer-nav">
+                <a href="index.html">TOP</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html">寄付金控除</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="sitepolicy.html">サイトポリシー</a>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="privacy.html">プライバシーポリシー</a>
-                    <a href="sitepolicy.html">サイトポリシー</a>
-                </div>
+                <div class="footer-links"></div>
                 <p class="footer-copy">© GO TO HAPPY LIFE</p>
             </div>
         </div>
-    </footer>
-
-</body>
-</html>
+    </footer></body></html>

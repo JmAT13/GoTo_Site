@@ -1,377 +1,59 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>団体について | GO TO HAPPY LIFE</title>
-    <meta name="description" content="GO TO HAPPY LIFEの考え方と活動の背景。私たちは万能ではない。でも、逃げない。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style id="global-override">
-        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
-
-        /* --- 余白（一番重要）--- */
-        /* section padding 140px: Bob指摘「余白を倍にするだけで高級感が出る」 */
-        .section { padding-top: 140px !important; padding-bottom: 140px !important; }
-        .main > section { padding-top: 140px !important; padding-bottom: 140px !important; }
-
-        /* --- フォント階層 --- */
-        /* H1 64px / H2 40px / 本文 20px: Bob指摘「見出しが小さいのが一番Appleから遠い」 */
-        .hero-mission-text {
-            font-size: clamp(40px, 5.5vw, 72px) !important;
-            font-weight: 900 !important;
-            line-height: 1.15 !important;
-            letter-spacing: -0.03em !important;
-        }
-        h1:not(.hero-mission-text) {
-            font-size: clamp(32px, 4.5vw, 64px) !important;
-            font-weight: 900 !important;
-            line-height: 1.2 !important;
-            letter-spacing: -0.025em !important;
-        }
-        h2 {
-            font-size: clamp(24px, 3vw, 40px) !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.015em !important;
-        }
-        h3 { font-size: clamp(18px, 2vw, 28px) !important; font-weight: 700 !important; }
-        p, li { font-size: clamp(17px, 1.4vw, 20px) !important; line-height: 2 !important; }
-
-        /* 小文字ラベル等は除外 */
-        .footer-copy, .page-header-en, .hero-mission-label,
-        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
-        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
-            font-size: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* --- statement-lead 強化 --- */
-        .statement-lead {
-            font-size: clamp(24px, 3.8vw, 48px) !important;
-            font-weight: 900 !important;
-            line-height: 1.35 !important;
-            letter-spacing: -0.02em !important;
-        }
-
-        /* --- 影・枠線・装飾を除去 --- */
-        .about-block, .story-item, .gallery-card, .board-card-minimal,
-        .news-item, .action-card, .card-tilt, .intro-highlight {
-            box-shadow: none !important;
-            border: none !important;
-        }
-        .about-block {
-            padding: 0 0 2.5rem 0 !important;
-            background: transparent !important;
-            border-bottom: 1px solid #f0f0f0 !important;
-            margin-bottom: 3rem !important;
-        }
-        .about-block:last-child { border-bottom: none !important; }
-        .intro-highlight {
-            background: transparent !important;
-            padding: 80px 0 !important;
-            max-width: 720px !important;
-            margin: 0 auto !important;
-        }
-        .card-tilt { transform: none !important; }
-        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
-
-        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
-        .hero-video-section {
-            height: 100vh !important;
-            min-height: 600px !important;
-        }
-        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
-        .hero-video-content {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            text-align: center !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            padding: 0 2rem !important;
-        }
-        .hero-mission-sub {
-            font-size: clamp(15px, 1.4vw, 18px) !important;
-            line-height: 1.9 !important;
-            opacity: 0.88 !important;
-        }
-        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
-
-        /* --- スクロールインジケーターアニメーション --- */
-        @keyframes scrollPulse {
-            0%, 100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.4); opacity: 0.3; }
-        }
-        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
-
-        /* --- index-flow 写真×文章 --- */
-        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
-        .index-flow-img img { border-radius: 4px !important; }
-        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
-
-        /* --- page-header --- */
-        .page-header { padding: 9rem 2rem 4rem !important; }
-        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
-
-        /* --- question-section --- */
-        .question-section {
-            padding: 60px 0 !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        /* --- footer statement 強化 --- */
-        .footer-statement p {
-            font-size: clamp(17px, 1.8vw, 22px) !important;
-            font-weight: 700 !important;
-            line-height: 1.9 !important;
-            color: rgba(255,255,255,0.92) !important;
-        }
-
-        /* --- SNSバー --- */
-        .sns-bar-label { font-size: 0.68rem !important; }
-
-        /* --- モバイル --- */
-        @media (max-width: 768px) {
-            .section, .main > section {
-                padding-top: 72px !important;
-                padding-bottom: 72px !important;
-            }
-            .hero-video-section { height: 100svh !important; }
-            .index-flow { gap: 3rem !important; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
+<title>団体について | GO TO HAPPY LIFE</title>
+<meta name="description" content="GO TO HAPPY LIFE の団体概要と考え方。公益・事業・現場、それぞれの役割を分けながら社会課題を前に進めます。">
+</head><body>
     <header class="header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <span>GO TO HAPPY LIFE</span>
-            </a>
-
+            <a href="index.html" class="logo">GO TO HAPPY LIFE</a>
             <nav class="nav">
                 <a href="index.html">TOP</a>
                 <a href="about.html" class="active">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
                 <a href="donate.html">寄付する</a>
                 <a href="tax-deduction.html">寄付金控除</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
-
-            <button class="mobile-menu-btn" aria-label="メニュー">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <p class="page-header-en">ABOUT US</p>
-        <h1>団体について</h1>
-    </div>
-
-    <main class="main">
-
-        <!-- 団体概要 -->
-        <section class="section org-overview">
-            <h2 class="org-overview-title">団体概要</h2>
-            
-            <dl class="org-info">
-                <div class="org-info-row">
-                    <dt>名称</dt>
-                    <dd>特定非営利活動法人 GO TO HAPPY LIFE<br><span class="org-sub">（旧名称：日本在宅看護普及会）</span></dd>
-                </div>
-                <div class="org-info-row">
-                    <dt>役員</dt>
-                    <dd>
-                        後藤 栄子（理事長）<br>
-                        後藤 基温（理事）<br>
-                        伊藤 晋（理事）<br>
-                        大下 甚（監事）
-                    </dd>
-                </div>
-                <div class="org-info-row">
-                    <dt>設立</dt>
-                    <dd>平成11年（1999年）9月</dd>
-                </div>
-                <div class="org-info-row">
-                    <dt>所在地</dt>
-                    <dd>東京都</dd>
-                </div>
-                <div class="org-info-row">
-                    <dt>事業内容</dt>
-                    <dd>医療と福祉を軸に、制度の外で困っている人のための活動</dd>
-                </div>
-            </dl>
-
-            <div class="about-block" style="margin-top: 2rem;">
-                <p>GO TO HAPPY LIFE は<br>NPOとして寄付を受け取り<br>社会課題の解決を推進します。</p>
-                <p>プロジェクトの企画・運営は<br>パートナー企業である<br>TAmJ株式会社が担当し<br>医療・福祉・地域企業などの<br>実行パートナーと連携して<br>事業を実装します。</p>
-            </div>
-        </section>
-
-        <section class="section">
-            <!-- ストーリーライン形式で表示 -->
-            <div class="story-line">
-                <!-- 問題提起 -->
-                <div class="story-item animate-on-scroll">
-                    <h3 class="title-tilted">問題提起</h3>
-                    <p>制度は、すべてを救わない。</p>
-                    <p>医療保険、介護保険、生活保護。日本には多くの社会保障制度がある。<br>でも、その網の目からこぼれ落ちる人がいる。</p>
-                    <p>私たちは、その現実を知っている。</p>
-                </div>
-
-                <!-- 支援観 -->
-                <div class="story-item animate-on-scroll">
-                    <h3 class="title-tilted">支援観</h3>
-                    <div class="testimonial-pop">
-                        <p>支援とは、"してあげる"ことではない。</p>
-                    </div>
-                    <p>私たちは、現場に行く。話を聞く。一緒に考える。<br>答えを持っていくのではなく、答えを一緒に探す。</p>
-                    <p>それが、私たちの支援観だ。</p>
-                </div>
-
-                <!-- 医療×福祉の空白 -->
-                <div class="story-item animate-on-scroll">
-                    <h3 class="title-tilted">医療×福祉の空白</h3>
-                    <p>医療は病院で終わる。福祉は申請から始まる。</p>
-                    <div class="bubble-comment">
-                        <p>その「あいだ」に、誰にも届かない時間がある。</p>
-                    </div>
-                    <p>退院したけど、生活が戻らない。制度はあるけど、つながらない。</p>
-                    <p>私たちは、その空白に立つ。</p>
-                </div>
-            </div>
-
-            <!-- Image -->
-            <div class="about-image-full">
-                <img src="goto7.png" alt="GO TO HAPPY LIFE 支援活動">
-            </div>
-
-            <!-- 非効率の選択 -->
-            <div class="about-block">
-                <h3>非効率の選択</h3>
-                <p>効率を求めれば、現場には行けない。</p>
-                <p>私たちは、スケールしない支援を選んでいる。<br>一人ひとりに向き合う。時間をかける。遠くまで行く。</p>
-                <p>それは非効率だ。でも、それしかない。</p>
-            </div>
-
-            <!-- 1999年からの変化 -->
-            <div class="about-block">
-                <h3>1999年からの変化</h3>
-                <p>設立から25年以上が経った。</p>
-                <p>社会は変わった。制度も変わった。<br>でも、制度の外で困っている人は、今もいる。</p>
-                <p>私たちは、変わらずそこにいる。</p>
-            </div>
-
-            <!-- 目指す位置 -->
-            <div class="about-block">
-                <h3>目指す位置</h3>
-                <p>私たちは、万能ではない。</p>
-                <p>すべてを救えるとは思っていない。<br>でも、目の前の一人を見捨てない。</p>
-                <p>それが、私たちの立つ位置だ。</p>
-            </div>
-
-            <div class="about-block">
-                <h3>私たちの役割</h3>
-                <p>私たちは<br>すべてを自分たちで行う団体ではありません。</p>
-                <p>社会課題の解決には<br>公益・事業・現場<br>それぞれの役割が必要です。</p>
-                <p>GO TO HAPPY LIFE は<br>その中心で<br>プロジェクトを推進するNPO法人です。</p>
-            </div>
-
-            <!-- Gallery -->
-            <div class="gallery-section animate-on-scroll">
-                <h3 class="gallery-title accent-line">活動ギャラリー</h3>
-                <div class="gallery-statement">
-                    <p>これは活動記録ではない。<br>私たちが、<span class="highlight-marker">逃げなかった証拠</span>だ。</p>
-                </div>
-                <div class="gallery-grid-full">
-                    <div class="gallery-card hover-lift">
-                        <div class="gallery-card-image"><img src="goto1.png" alt="アメリカでの活動"></div>
-                        <div class="gallery-card-content">
-                            <div class="gallery-tags"><span class="tag-playful">#America</span><span class="tag-playful">#LocalAction</span></div>
-                            <p class="gallery-lead">想いを、国境を越えて届ける。</p>
-                            <p class="gallery-desc">現地のコミュニティとつながりながら、支援のきっかけを一つひとつ積み重ねています。</p>
-                        </div>
-                    </div>
-                    <div class="gallery-card hover-lift">
-                        <div class="gallery-card-image"><img src="goto4.png" alt="アジアでの活動"></div>
-                        <div class="gallery-card-content">
-                            <div class="gallery-tags"><span class="tag-playful">#Asia</span><span class="tag-playful">#LocalAction</span></div>
-                            <p class="gallery-lead">命を守る現場と、つながる。</p>
-                            <p class="gallery-desc">医療や防災の現場とも連携し、支援の幅を広げています。</p>
-                        </div>
-                    </div>
-                    <div class="gallery-card hover-lift">
-                        <div class="gallery-card-image"><img src="goto6.png" alt="アメリカでの活動"></div>
-                        <div class="gallery-card-content">
-                            <div class="gallery-tags"><span class="tag-playful">#America</span><span class="tag-playful">#LocalAction</span></div>
-                            <p class="gallery-lead">支援は、特別なことじゃない。</p>
-                            <p class="gallery-desc">集まり、話し、行動する。その一歩が社会を動かします。</p>
-                        </div>
-                    </div>
-                    <div class="gallery-card">
-                        <div class="gallery-card-image"><img src="goto9.png" alt="アジアでの活動"></div>
-                        <div class="gallery-card-content">
-                            <div class="gallery-tags"><span>#Asia</span><span>#LocalAction</span></div>
-                            <p class="gallery-lead">想いは、静かに根づいていく。</p>
-                            <p class="gallery-desc">目立たなくても、支援は確かに続いています。</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
+<div class="page-header"><div class="narrow"><span class="kicker">About us</span><h1>団体について</h1><p class="lead muted">GO TO HAPPY LIFE は、寄付を受け取り、プロジェクトを推進し、現場に残る形までつなぐNPOです。</p></div></div>
+<main>
+<section class="section-tight"><div class="narrow">
+<div class="table-wrap"><table>
+<tr><th>名称</th><td>特定非営利活動法人 GO TO HAPPY LIFE（旧名称：日本在宅看護普及会）</td></tr>
+<tr><th>役員</th><td>後藤 栄子（理事長） / 後藤 基温（理事） / 伊藤 晋（理事） / 大下 甚（監事）</td></tr>
+<tr><th>設立</th><td>平成11年（1999年）9月</td></tr>
+<tr></tr>
+<tr><th>事業内容</th><td>医療と福祉を軸に、制度の外で困っている人のための活動</td></tr>
+</table></div></div></section>
+<section class="section"><div class="container grid-2"><div class="copy-stack"><span class="kicker">Role</span><h2>公益、事業、現場。<br>役割を分けて前に進める。</h2><p class="muted">社会課題の解決には、公益、事業、現場、それぞれの役割があります。GO TO HAPPY LIFE はその中心でプロジェクトを前に進めるNPOです。</p><ul class="list-clean"><li>寄付を受け取り、公益的に管理する</li><li>パートナーと連携してプロジェクトを組み立てる</li><li>現場の実行パートナーと実装までつなぐ</li></ul></div><div class="media-frame"><img src="goto7.png" alt="支援活動"></div></div></section>
+<section class="section alt-bg"><div class="narrow"><span class="kicker">Position</span><h2>すべてを救えるとは言わない。<br>でも、目の前から逃げない。</h2><p class="lead muted" style="margin-top:24px;">私たちは万能ではありません。けれど、制度の外で困っている人がいる現実から目をそらさず、医療と福祉の間にある空白に向き合い続けます。</p></div></section>
+</main>
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-statement">
-                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
+                <p class="lead">GO TO HAPPY LIFE は、<br>社会課題を事業として完成させるNPOです。</p>
             </div>
-
-            <div class="footer-top">
-                <a href="index.html" class="footer-logo">
-                    <span>GO TO HAPPY LIFE</span>
-                </a>
-                <nav class="footer-nav">
-                    <a href="index.html">TOP</a>
-                    <a href="about.html">団体について</a>
-                    <a href="support-system.html">支援の仕組み</a>
-                    <a href="donate.html">寄付する</a>
-                    <a href="tax-deduction.html">寄付金控除</a>
-                    <a href="contact.html">お問い合わせ</a>
-                </nav>
+            <div class="footer-nav">
+                <a href="index.html">TOP</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html">寄付金控除</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="sitepolicy.html">サイトポリシー</a>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="privacy.html">プライバシーポリシー</a>
-                    <a href="sitepolicy.html">サイトポリシー</a>
-                </div>
+                <div class="footer-links"></div>
                 <p class="footer-copy">© GO TO HAPPY LIFE</p>
             </div>
         </div>
     </footer>
-
-    <!-- スクロールアニメーション用JavaScript -->
-    <script>
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, observerOptions);
-        document.querySelectorAll('.animate-on-scroll, .animate-left, .animate-right').forEach(el => observer.observe(el));
-    </script>
-
-</body>
-</html>
+</body></html>

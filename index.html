@@ -3,470 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GO TO HAPPY LIFE | きれいごとだけでは、現場は回らない。</title>
-    <meta name="description" content="医療も、福祉も、制度の外で困っている人がいます。GO TO HAPPY LIFE は、その場所に行くことを選び続けてきました。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style id="global-override">
-        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
-
-        /* --- 余白（一番重要）--- */
-        /* section padding 140px: Bob指摘「余白を倍にするだけで高級感が出る」 */
-        .section { padding-top: 140px !important; padding-bottom: 140px !important; }
-        .main > section { padding-top: 140px !important; padding-bottom: 140px !important; }
-
-        /* --- フォント階層 --- */
-        /* H1 64px / H2 40px / 本文 20px: Bob指摘「見出しが小さいのが一番Appleから遠い」 */
-        .hero-mission-text {
-            font-size: clamp(40px, 5.5vw, 72px) !important;
-            font-weight: 900 !important;
-            line-height: 1.15 !important;
-            letter-spacing: -0.03em !important;
-        }
-        h1:not(.hero-mission-text) {
-            font-size: clamp(32px, 4.5vw, 64px) !important;
-            font-weight: 900 !important;
-            line-height: 1.2 !important;
-            letter-spacing: -0.025em !important;
-        }
-        h2 {
-            font-size: clamp(24px, 3vw, 40px) !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.015em !important;
-        }
-        h3 { font-size: clamp(18px, 2vw, 28px) !important; font-weight: 700 !important; }
-        p, li { font-size: clamp(17px, 1.4vw, 20px) !important; line-height: 2 !important; }
-
-        /* 小文字ラベル等は除外 */
-        .footer-copy, .page-header-en, .hero-mission-label,
-        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
-        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
-            font-size: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* --- statement-lead 強化 --- */
-        .statement-lead {
-            font-size: clamp(24px, 3.8vw, 48px) !important;
-            font-weight: 900 !important;
-            line-height: 1.35 !important;
-            letter-spacing: -0.02em !important;
-        }
-
-        /* --- 影・枠線・装飾を除去 --- */
-        .about-block, .story-item, .gallery-card, .board-card-minimal,
-        .news-item, .action-card, .card-tilt, .intro-highlight {
-            box-shadow: none !important;
-            border: none !important;
-        }
-        .about-block {
-            padding: 0 0 2.5rem 0 !important;
-            background: transparent !important;
-            border-bottom: 1px solid #f0f0f0 !important;
-            margin-bottom: 3rem !important;
-        }
-        .about-block:last-child { border-bottom: none !important; }
-        .intro-highlight {
-            background: transparent !important;
-            padding: 80px 0 !important;
-            max-width: 720px !important;
-            margin: 0 auto !important;
-        }
-        .card-tilt { transform: none !important; }
-        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
-
-        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
-        .hero-video-section {
-            height: 100vh !important;
-            min-height: 600px !important;
-        }
-        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
-        .hero-video-content {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            text-align: center !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            padding: 0 2rem !important;
-        }
-        .hero-mission-sub {
-            font-size: clamp(15px, 1.4vw, 18px) !important;
-            line-height: 1.9 !important;
-            opacity: 0.88 !important;
-        }
-        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
-
-        /* --- スクロールインジケーターアニメーション --- */
-        @keyframes scrollPulse {
-            0%, 100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.4); opacity: 0.3; }
-        }
-        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
-
-        /* --- index-flow 写真×文章 --- */
-        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
-        .index-flow-img img { border-radius: 4px !important; }
-        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
-
-        /* --- page-header --- */
-        .page-header { padding: 9rem 2rem 4rem !important; }
-        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
-
-        /* --- question-section --- */
-        .question-section {
-            padding: 60px 0 !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        /* --- footer statement 強化 --- */
-        .footer-statement p {
-            font-size: clamp(17px, 1.8vw, 22px) !important;
-            font-weight: 700 !important;
-            line-height: 1.9 !important;
-            color: rgba(255,255,255,0.92) !important;
-        }
-
-        /* --- SNSバー --- */
-        .sns-bar-label { font-size: 0.68rem !important; }
-
-        /* --- モバイル --- */
-        @media (max-width: 768px) {
-            .section, .main > section {
-                padding-top: 72px !important;
-                padding-bottom: 72px !important;
-            }
-            .hero-video-section { height: 100svh !important; }
-            .index-flow { gap: 3rem !important; }
-        }
-    </style>
+    <title>GO TO HAPPY LIFE | きれいごとだけでは、現場は回らない。</title>
+    <meta name="description" content="社会課題を事業として完成させるNPO、GO TO HAPPY LIFE。寄付を受け取り、パートナーと企画し、医療・福祉の現場で実装します。">
 </head>
 <body>
-
-    <!-- Header -->
     <header class="header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <span>GO TO HAPPY LIFE</span>
-            </a>
-
+            <a href="index.html" class="logo">GO TO HAPPY LIFE</a>
             <nav class="nav">
                 <a href="index.html" class="active">TOP</a>
                 <a href="about.html">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
                 <a href="donate.html">寄付する</a>
                 <a href="tax-deduction.html">寄付金控除</a>
                 <a href="contact.html">お問い合わせ</a>
             </nav>
-
-            <button class="mobile-menu-btn" aria-label="メニュー">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </header>
-
-    <!-- Hero with Video Background (HELLOlife style) -->
-    <section class="hero-video-section" id="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="hero-video.mp4" type="video/mp4">
-        </video>
-        <div class="hero-video-overlay"></div>
-        <div class="hero-video-content">
-            <p class="hero-mission-label">MISSION</p>
-            <h1 class="hero-mission-text">
-                きれいごとだけでは、<br>
-                現場は回らない。
-            </h1>
-            <p class="hero-mission-sub">
-                制度の外で困っている人がいる。<br>
-                私たちは、その場所に行くことを選び続けてきました。
-            </p>
-            <div class="hero-cta-area">
-                <a href="about.html" class="hero-cta-btn">私たちについて</a>
-                <a href="donate.html" class="hero-cta-btn hero-cta-btn-outline">支援する</a>
+    <section class="hero">
+        <div class="hero-media">
+            <video autoplay muted loop playsinline>
+                <source src="hero-video.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-copy">
+                <span class="kicker">Mission</span>
+                <h1>きれいごとだけでは、<br>現場は回らない。</h1>
+                <p class="lead" style="margin-top:24px;">制度の外で困っている人がいる。<br>私たちは、その場所に行くことを選び続けてきました。</p>
+                <div class="hero-actions">
+                    <a href="donate.html" class="btn btn-light">寄付する</a>
+                    <a href="about.html" class="btn btn-outline-light">団体について</a>
+                </div>
             </div>
         </div>
-        <div class="hero-scroll-indicator">
-            <span>SCROLL</span>
-            <div class="hero-scroll-line"></div>
-        </div>
+        <div class="hero-scroll">SCROLL</div>
     </section>
 
-    <main class="main">
-
-        <!-- 思想 -->
-        <section class="section color-shift" id="main-section" style="text-align:center; padding-top:140px; padding-bottom:140px;">
-            <div class="animate-on-scroll" style="max-width:760px; margin:0 auto;">
-                <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.3em; color:var(--viridian); margin-bottom:2rem;">MISSION</p>
-                <p class="statement-lead">GO TO HAPPY LIFE は<br>寄付を集める団体ではありません。</p>
-                <p style="margin-top:2.5rem; font-size:clamp(16px,1.8vw,20px); line-height:2; color:#555;">社会課題を、実際の事業として完成させるための公益プラットフォームです。</p>
+    <main>
+        <section class="section">
+            <div class="narrow" style="text-align:center;">
+                <span class="kicker">What we do</span>
+                <h2>寄付を集めるためではなく、<br>社会課題を前に進めるために。</h2>
+                <p class="lead muted" style="margin-top:28px;">GO TO HAPPY LIFE は寄付を受け取り、プロジェクトを推進し、現場に残る形まで責任を持つNPOです。</p>
             </div>
         </section>
 
-        <!-- 仕組み 写真×文章 -->
-        <section class="section" style="background:#fafafa; padding-top:120px; padding-bottom:120px;">
-            <div style="max-width:1100px; margin:0 auto; padding:0 2rem;">
-
-                <p style="font-size:0.8rem; font-weight:700; letter-spacing:0.3em; color:var(--viridian); margin-bottom:4rem; text-align:center;">HOW WE WORK</p>
-
-                <div class="index-flow">
-
-                    <div class="index-flow-item animate-on-scroll">
-                        <div class="index-flow-img">
-                            <img src="goto3.png" alt="寄付を受け取る">
-                        </div>
-                        <div class="index-flow-text">
-                            <p class="index-flow-label">01</p>
-                            <h3>寄付を、直接受け取る</h3>
-                            <p>GO TO HAPPY LIFE は NPO として寄付を受け取ります。中間業者は存在しません。あなたの支援は、そのまま団体の口座へ届きます。</p>
-                        </div>
+        <section class="section alt-bg">
+            <div class="container">
+                <div class="grid-2" style="margin-bottom:56px;">
+                    <div class="copy-stack">
+                        <span class="kicker">How we work</span>
+                        <h2>3つの流れだけ、<br>明快に見せる。</h2>
+                        <p class="muted">寄付の入口、プロジェクトの企画、現場での実装。役割を分けることで、説明責任と実行力の両方を保ちます。</p>
                     </div>
-
-                    <div class="index-flow-item index-flow-item--rev animate-on-scroll">
-                        <div class="index-flow-img">
-                            <img src="goto5.png" alt="パートナーと企画する">
-                        </div>
-                        <div class="index-flow-text">
-                            <p class="index-flow-label">02</p>
-                            <h3>パートナーと、企画する</h3>
-                            <p>プロジェクトの企画・運営は TAmJ 株式会社が担当します。公益・事業・現場、それぞれの専門を持つ連携先と組むことで、支援を事業として完成させます。</p>
-                        </div>
+                    <div class="media-frame"><img src="goto3.png" alt="活動風景"></div>
+                </div>
+                <div class="metric-grid">
+                    <div class="metric">
+                        <div class="number">01</div>
+                        <h3>寄付を、直接受け取る</h3>
+                        <p class="muted">支援金は GO TO HAPPY LIFE の口座へ直接入金されます。</p>
                     </div>
-
-                    <div class="index-flow-item animate-on-scroll">
-                        <div class="index-flow-img">
-                            <img src="goto2.png" alt="現場で実装する">
-                        </div>
-                        <div class="index-flow-text">
-                            <p class="index-flow-label">03</p>
-                            <h3>医療・福祉の現場で、実装する</h3>
-                            <p>プロジェクトは医療・福祉の実行パートナーとともに現場で実装されます。寄付が集まった瞬間をゴールにしません。完成させるところまでが、私たちの仕事です。</p>
-                        </div>
+                    <div class="metric">
+                        <div class="number">02</div>
+                        <h3>パートナーと、企画する</h3>
+                        <p class="muted">タムジ.Corpと連携し、公益と事業の両面から設計します。</p>
                     </div>
-
+                    <div class="metric">
+                        <div class="number">03</div>
+                        <h3>現場で、実装する</h3>
+                        <p class="muted">医療・福祉・地域の実行パートナーとともに形にします。</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 寄付CTA -->
-        <section class="section" style="text-align:center; padding-top:140px; padding-bottom:140px;">
-            <div class="animate-on-scroll" style="max-width:640px; margin:0 auto;">
-                <p style="font-size:clamp(18px,2.5vw,28px); font-weight:700; line-height:1.7; color:var(--indigo); margin-bottom:1.5rem;">あなたの支援が、<br>医療・福祉の現場に届く。</p>
-                <p style="font-size:clamp(15px,1.5vw,17px); color:#777; line-height:2; margin-bottom:3rem;">寄付は GO TO HAPPY LIFE が直接受け取り、<br>社会課題を解決するプロジェクトに使用されます。</p>
-                <a href="donate.html" class="btn btn-primary" style="padding:16px 48px; font-size:16px; font-weight:700;">寄付する</a>
-                <p style="margin-top:1.5rem; font-size:13px; color:#bbb;"><a href="tax-deduction.html" style="color:var(--viridian); text-decoration:underline;">寄付金控除の対象になる場合があります →</a></p>
+        <section class="section">
+            <div class="container grid-2">
+                <div class="media-frame"><img src="goto5.png" alt="プロジェクト"></div>
+                <div class="copy-stack">
+                    <span class="kicker">Project</span>
+                    <h2>思想だけで終わらせない。<br>進行中のプロジェクトを見せる。</h2>
+                    <p class="muted">寄付先が具体的に見えることで、支援の意味がはっきりします。退院支援、地域連携、医療と福祉の接続など、進めている案件を一覧で見せます。</p>
+                    <div class="cta-row" style="justify-content:flex-start;">
+                        <a href="project.html" class="btn btn-primary">プロジェクトを見る</a>
+                    </div>
+                </div>
             </div>
         </section>
 
-    </main>
-
-    <style>
-        .index-flow {
-            margin: 3rem 0;
-            display: flex;
-            flex-direction: column;
-            gap: 4rem;
-        }
-        .index-flow-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-        .index-flow-item--rev {
-            direction: rtl;
-        }
-        .index-flow-item--rev > * {
-            direction: ltr;
-        }
-        .index-flow-img img {
-            width: 100%;
-            aspect-ratio: 4/3;
-            object-fit: cover;
-            border-radius: 12px;
-            display: block;
-        }
-        .index-flow-text {
-            padding: 1rem 0;
-        }
-        .index-flow-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            color: var(--viridian, #009b77);
-            margin-bottom: 0.8rem;
-        }
-        .index-flow-text h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            line-height: 1.5;
-            margin-bottom: 1rem;
-            color: var(--indigo, #2b5082);
-        }
-        .index-flow-text p {
-            font-size: 0.95rem;
-            line-height: 2;
-            color: var(--text, #333);
-        }
-        @media (max-width: 768px) {
-            .index-flow-item,
-            .index-flow-item--rev {
-                grid-template-columns: 1fr;
-                direction: ltr;
-                gap: 1.5rem;
-            }
-        }
-    </style>
-
-    <!-- SNS -->
-    <section class="sns-bar">
-        <div class="sns-bar-inner">
-            <p class="sns-bar-label">FOLLOW US</p>
-            <div class="sns-bar-icons">
-                <!-- LINE -->
-                <a href="#" class="sns-bar-icon" title="LINE" aria-label="LINE">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2C6.48 2 2 5.92 2 10.72c0 3.76 2.52 7.02 6.3 8.7-.15.56-.56 2.02-.64 2.34-.1.4.15.4.31.29.13-.09 2.08-1.38 2.93-1.95.34.05.69.07 1.1.07 5.52 0 10-3.92 10-8.72S17.52 2 12 2z" stroke-linejoin="round"/>
-                        <path d="M8.5 12.5h-1v-3M8.5 9.5v3M10 9.5v3l2-3v3M14.5 9.5h-1.5v3h1.5M13 11h1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-                <!-- Instagram -->
-                <a href="#" class="sns-bar-icon" title="Instagram" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                        <circle cx="12" cy="12" r="4"/>
-                        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-                    </svg>
-                </a>
-                <!-- Facebook -->
-                <a href="#" class="sns-bar-icon" title="Facebook" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
-                    </svg>
-                </a>
+        <section class="cta-band">
+            <div class="narrow">
+                <h2>あなたの支援が、<br>医療・福祉の現場に届く。</h2>
+                <p class="lead muted" style="margin-top:22px;">寄付は GO TO HAPPY LIFE が直接受け取り、社会課題を解決するプロジェクトに使われます。</p>
+                <div class="hero-actions">
+                    <a href="donate.html" class="btn btn-primary">寄付する</a>
+                    <a href="tax-deduction.html" class="btn btn-secondary">寄付金控除を見る</a>
+                </div>
             </div>
-        </div>
-    </section>
-
-    <style>
-        .sns-bar {
-            border-top: 1px solid #ebebeb;
-            padding: 2rem;
-        }
-        .sns-bar-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-        .sns-bar-label {
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.25em;
-            color: #bbb;
-        }
-        .sns-bar-icons {
-            display: flex;
-            gap: 1rem;
-        }
-        .sns-bar-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid #ddd;
-            border-radius: 50%;
-            color: #888;
-            transition: color 0.2s, border-color 0.2s;
-        }
-        .sns-bar-icon svg {
-            width: 18px;
-            height: 18px;
-        }
-        .sns-bar-icon:hover {
-            color: #333;
-            border-color: #999;
-        }
-    </style>
-
-    <!-- Footer -->
+        </section>
+    </main>
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-statement">
-                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
+                <p class="lead">GO TO HAPPY LIFE は、<br>社会課題を事業として完成させるNPOです。</p>
             </div>
-
-            <div class="footer-top">
-                <a href="index.html" class="footer-logo">
-                    <span>GO TO HAPPY LIFE</span>
-                </a>
-                <nav class="footer-nav">
-                    <a href="index.html">TOP</a>
-                    <a href="about.html">団体について</a>
-                    <a href="support-system.html">支援の仕組み</a>
-                    <a href="donate.html">寄付する</a>
-                    <a href="tax-deduction.html">寄付金控除</a>
-                    <a href="contact.html">お問い合わせ</a>
-                </nav>
+            <div class="footer-nav">
+                <a href="index.html">TOP</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html">寄付金控除</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="sitepolicy.html">サイトポリシー</a>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="privacy.html">プライバシーポリシー</a>
-                    <a href="sitepolicy.html">サイトポリシー</a>
-                </div>
+                <div class="footer-links"></div>
                 <p class="footer-copy">© GO TO HAPPY LIFE</p>
             </div>
         </div>
     </footer>
-
-    <!-- スクロールアニメーション & インタラクション用JavaScript -->
-    <script>
-        // スクロールアニメーション
-        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
-                }
-            });
-        }, observerOptions);
-        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
-
-        // スクロールで色調変化
-        window.addEventListener('scroll', () => {
-            const section = document.getElementById('main-section');
-            if (section && window.scrollY > 300) {
-                section.classList.add('bright');
-            } else if (section) {
-                section.classList.remove('bright');
-            }
-            
-            // ヘッダーの背景をスクロールで変化
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = '0 1px 4px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // スクロールインジケーター
-        document.querySelector('.hero-scroll-indicator')?.addEventListener('click', () => {
-            document.querySelector('.main').scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
-
 </body>
 </html>

@@ -1,249 +1,48 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
+<!DOCTYPE html><html lang="ja"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>お問い合わせ | GO TO HAPPY LIFE</title>
-    <meta name="description" content="一緒に考えるところから始めたい方へ。GO TO HAPPY LIFE は、完成した答えを持っていません。でも、現場に行き、考え、動く覚悟はあります。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style id="global-override">
-        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
-
-        /* --- 余白（一番重要）--- */
-        /* section padding 140px: Bob指摘「余白を倍にするだけで高級感が出る」 */
-        .section { padding-top: 140px !important; padding-bottom: 140px !important; }
-        .main > section { padding-top: 140px !important; padding-bottom: 140px !important; }
-
-        /* --- フォント階層 --- */
-        /* H1 64px / H2 40px / 本文 20px: Bob指摘「見出しが小さいのが一番Appleから遠い」 */
-        .hero-mission-text {
-            font-size: clamp(40px, 5.5vw, 72px) !important;
-            font-weight: 900 !important;
-            line-height: 1.15 !important;
-            letter-spacing: -0.03em !important;
-        }
-        h1:not(.hero-mission-text) {
-            font-size: clamp(32px, 4.5vw, 64px) !important;
-            font-weight: 900 !important;
-            line-height: 1.2 !important;
-            letter-spacing: -0.025em !important;
-        }
-        h2 {
-            font-size: clamp(24px, 3vw, 40px) !important;
-            font-weight: 800 !important;
-            letter-spacing: -0.015em !important;
-        }
-        h3 { font-size: clamp(18px, 2vw, 28px) !important; font-weight: 700 !important; }
-        p, li { font-size: clamp(17px, 1.4vw, 20px) !important; line-height: 2 !important; }
-
-        /* 小文字ラベル等は除外 */
-        .footer-copy, .page-header-en, .hero-mission-label,
-        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
-        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
-            font-size: inherit !important;
-            line-height: inherit !important;
-        }
-
-        /* --- statement-lead 強化 --- */
-        .statement-lead {
-            font-size: clamp(24px, 3.8vw, 48px) !important;
-            font-weight: 900 !important;
-            line-height: 1.35 !important;
-            letter-spacing: -0.02em !important;
-        }
-
-        /* --- 影・枠線・装飾を除去 --- */
-        .about-block, .story-item, .gallery-card, .board-card-minimal,
-        .news-item, .action-card, .card-tilt, .intro-highlight {
-            box-shadow: none !important;
-            border: none !important;
-        }
-        .about-block {
-            padding: 0 0 2.5rem 0 !important;
-            background: transparent !important;
-            border-bottom: 1px solid #f0f0f0 !important;
-            margin-bottom: 3rem !important;
-        }
-        .about-block:last-child { border-bottom: none !important; }
-        .intro-highlight {
-            background: transparent !important;
-            padding: 80px 0 !important;
-            max-width: 720px !important;
-            margin: 0 auto !important;
-        }
-        .card-tilt { transform: none !important; }
-        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
-
-        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
-        .hero-video-section {
-            height: 100vh !important;
-            min-height: 600px !important;
-        }
-        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
-        .hero-video-content {
-            position: absolute !important;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            text-align: center !important;
-            width: 100% !important;
-            max-width: 900px !important;
-            padding: 0 2rem !important;
-        }
-        .hero-mission-sub {
-            font-size: clamp(15px, 1.4vw, 18px) !important;
-            line-height: 1.9 !important;
-            opacity: 0.88 !important;
-        }
-        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
-
-        /* --- スクロールインジケーターアニメーション --- */
-        @keyframes scrollPulse {
-            0%, 100% { transform: scaleY(1); opacity: 1; }
-            50% { transform: scaleY(0.4); opacity: 0.3; }
-        }
-        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
-
-        /* --- index-flow 写真×文章 --- */
-        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
-        .index-flow-img img { border-radius: 4px !important; }
-        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
-
-        /* --- page-header --- */
-        .page-header { padding: 9rem 2rem 4rem !important; }
-        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
-
-        /* --- question-section --- */
-        .question-section {
-            padding: 60px 0 !important;
-            background: transparent !important;
-            border: none !important;
-            box-shadow: none !important;
-        }
-
-        /* --- footer statement 強化 --- */
-        .footer-statement p {
-            font-size: clamp(17px, 1.8vw, 22px) !important;
-            font-weight: 700 !important;
-            line-height: 1.9 !important;
-            color: rgba(255,255,255,0.92) !important;
-        }
-
-        /* --- SNSバー --- */
-        .sns-bar-label { font-size: 0.68rem !important; }
-
-        /* --- モバイル --- */
-        @media (max-width: 768px) {
-            .section, .main > section {
-                padding-top: 72px !important;
-                padding-bottom: 72px !important;
-            }
-            .hero-video-section { height: 100svh !important; }
-            .index-flow { gap: 3rem !important; }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Header -->
+<title>お問い合わせ | GO TO HAPPY LIFE</title>
+<meta name="description" content="寄付、連携、取材、プロジェクト相談など、内容に応じてご案内します。">
+</head><body>
     <header class="header">
         <div class="header-inner">
-            <a href="index.html" class="logo">
-                <span>GO TO HAPPY LIFE</span>
-            </a>
+            <a href="index.html" class="logo">GO TO HAPPY LIFE</a>
             <nav class="nav">
                 <a href="index.html">TOP</a>
                 <a href="about.html">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
                 <a href="donate.html">寄付する</a>
                 <a href="tax-deduction.html">寄付金控除</a>
                 <a href="contact.html" class="active">お問い合わせ</a>
             </nav>
-            <button class="mobile-menu-btn" aria-label="メニュー">
-                <span></span><span></span><span></span>
-            </button>
         </div>
     </header>
-
-    <!-- Page Header -->
-    <div class="page-header">
-        <p class="page-header-en">CONTACT</p>
-        <h1>お問い合わせ</h1>
-    </div>
-
-    <main class="main">
-        <section class="section">
-            <div class="contact-content">
-                <div class="contact-info">
-                    <p style="font-size: 1rem; line-height: 2; color: var(--text);">GO TO HAPPY LIFE は、<br>完成した答えを持っていません。<br><br>でも、現場に行き、<br>考え、動く覚悟はあります。</p>
-                    <p style="margin-top: 2rem; font-size: 0.95rem; line-height: 1.9; color: #777;">寄付・連携・取材・プロジェクト相談など、<br>内容に応じてご案内します。</p>
-                    <p style="margin-top: 2.5rem; font-size: 0.88rem; color: #aaa; line-height: 1.8;">内容を確認のうえ、順次ご連絡します。<br>お急ぎの場合は、その旨をご記載ください。</p>
-                </div>
-
-                <form class="contact-form" method="post" action="">
-                    <div class="form-group">
-                        <label for="name">お名前</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">メールアドレス</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="category">お問い合わせ内容</label>
-                        <select id="category" name="category" required>
-                            <option value="" disabled selected>選択してください</option>
-                            <option value="activity">活動について知りたい</option>
-                            <option value="donation">寄付・支援について相談したい</option>
-                            <option value="partnership">企業・団体として連携したい</option>
-                            <option value="project">プロジェクトを一緒に立ち上げたい</option>
-                            <option value="volunteer">ボランティア・参加について</option>
-                            <option value="media">取材・メディア問い合わせ</option>
-                            <option value="other">その他</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">内容</label>
-                        <textarea id="message" name="message" required placeholder="何でも書いてください"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">送信する</button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
+<div class="page-header"><div class="narrow"><span class="kicker">Contact</span><h1>お問い合わせ</h1><p class="lead muted">寄付、連携、取材、プロジェクト相談など、内容に応じてご案内します。</p></div></div>
+<main><section class="section-tight"><div class="container grid-2"><div class="copy-stack"><h2>一緒に考えるところから始める。</h2><p class="muted">GO TO HAPPY LIFE は、完成した答えを最初から持っているわけではありません。けれど、現場に行き、考え、動く覚悟はあります。</p><p class="small muted">内容を確認のうえ、順次ご連絡します。お急ぎの場合は、その旨をご記載ください。</p></div><div><form class="form-grid"><div class="form-group"><label for="name">お名前</label><input id="name" type="text" required></div><div class="form-group"><label for="email">メールアドレス</label><input id="email" type="email" required></div><div class="form-group"><label for="category">お問い合わせ内容</label><select id="category" required><option value="" disabled selected>選択してください</option><option>活動について知りたい</option><option>寄付・支援について相談したい</option><option>企業・団体として連携したい</option><option>プロジェクトを一緒に立ち上げたい</option><option>ボランティア・参加について</option><option>取材・メディア問い合わせ</option><option>その他</option></select></div><div class="form-group"><label for="message">内容</label><textarea id="message" placeholder="ご相談内容をご記載ください"></textarea></div><button class="btn btn-primary" type="submit">送信する</button></form></div></section></main>
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-statement">
-                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
+                <p class="lead">GO TO HAPPY LIFE は、<br>社会課題を事業として完成させるNPOです。</p>
             </div>
-
-            <div class="footer-top">
-                <a href="index.html" class="footer-logo">
-                    <span>GO TO HAPPY LIFE</span>
-                </a>
-                <nav class="footer-nav">
-                    <a href="index.html">TOP</a>
-                    <a href="about.html">団体について</a>
-                    <a href="support-system.html">支援の仕組み</a>
-                    <a href="donate.html">寄付する</a>
-                    <a href="tax-deduction.html">寄付金控除</a>
-                    <a href="contact.html">お問い合わせ</a>
-                </nav>
+            <div class="footer-nav">
+                <a href="index.html">TOP</a>
+                <a href="about.html">団体について</a>
+                <a href="support-system.html">支援の仕組み</a>
+                <a href="project.html">プロジェクト</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html">寄付金控除</a>
+                <a href="contact.html">お問い合わせ</a>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="sitepolicy.html">サイトポリシー</a>
             </div>
-
             <div class="footer-bottom">
-                <div class="footer-links">
-                    <a href="privacy.html">プライバシーポリシー</a>
-                    <a href="sitepolicy.html">サイトポリシー</a>
-                </div>
+                <div class="footer-links"></div>
                 <p class="footer-copy">© GO TO HAPPY LIFE</p>
             </div>
         </div>
     </footer>
-
-</body>
-</html>
+</body></html>
