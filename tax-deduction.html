@@ -3,211 +3,428 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>寄付金控除（税金が戻る仕組み） | NPO法人 GO TO HAPPY LIFE</title>
+    <title>寄付金控除について | GO TO HAPPY LIFE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* ページ固有スタイル */
-        body { background: #ffffff; }
-
-        /* ヒーロー */
-        .page-hero { 
-            background: var(--primary); 
-            padding: 8rem 2rem 4rem; 
-            margin-top: 72px; 
+        .tax-hero {
+            background: var(--indigo, #2b5082);
+            padding: 8rem 2rem 4rem;
+            margin-top: 72px;
+        }
+        .tax-hero-inner { max-width: 860px; margin: 0 auto; }
+        .tax-hero-en {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.3em;
+            color: rgba(255,255,255,0.5);
+            margin-bottom: 1rem;
+        }
+        .tax-hero h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+        .tax-hero-lead {
+            list-style: none;
+            padding: 0;
+        }
+        .tax-hero-lead li {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.9;
+            padding-left: 1.2rem;
             position: relative;
+        }
+        .tax-hero-lead li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: rgba(255,255,255,0.4);
+        }
+
+        .tax-main { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 4rem; }
+
+        .tax-section {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .tax-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+        .tax-section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--indigo, #2b5082);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--viridian, #009b77);
+        }
+
+        .three-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .info-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 1.5rem 1.2rem;
+            text-align: center;
+            border-top: 2px solid var(--viridian, #009b77);
+        }
+        .info-card .number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: var(--viridian, #009b77);
+            color: white;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+        .info-card h3 { font-size: 0.95rem; color: var(--indigo, #2b5082); margin-bottom: 0.4rem; }
+        .info-card p { font-size: 0.85rem; color: #666; line-height: 1.6; }
+
+        .flow-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+            margin: 1.5rem 0;
+        }
+        .flow-table th {
+            background: #f5f5f5;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-weight: 500;
+            color: #555;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .flow-table td {
+            padding: 0.9rem 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            color: var(--text, #333);
+        }
+        .flow-table tr:last-child td { border-bottom: none; }
+        .flow-table .amount { font-weight: 600; color: var(--indigo, #2b5082); }
+        .flow-table .result { color: var(--viridian, #009b77); font-weight: 600; }
+
+        .tax-note {
+            font-size: 0.83rem;
+            color: #999;
+            margin-top: 0.8rem;
+        }
+
+        .accordion {
+            border: 1px solid #ebebeb;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
             overflow: hidden;
         }
-        .page-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.1) 2px, transparent 2px);
-            background-size: 30px 30px;
-            pointer-events: none;
+        .accordion-header {
+            background: #fafafa;
+            padding: 1rem 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--indigo, #2b5082);
         }
-        .page-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -20px;
-            left: 0;
-            right: 0;
-            height: 40px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,20 Q300,40 600,20 T1200,20 L1200,40 L0,40 Z' fill='%23ffffff'/%3E%3C/svg%3E") no-repeat center bottom;
-            background-size: cover;
-        }
-        .page-hero-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
-        .page-hero-en { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--white); opacity: 0.8; margin-bottom: 12px; }
-        .page-hero h1 { font-size: 2rem; color: var(--white); margin-bottom: 1.5rem; }
-        .page-hero .lead { font-size: 1.05rem; color: var(--white); line-height: 1.8; }
-        .page-hero .lead li { margin-bottom: 0.5rem; padding-left: 1.5rem; position: relative; list-style: none; }
-        .page-hero .lead li::before { content: "✓"; position: absolute; left: 0; color: var(--white); font-weight: bold; }
-
-        .main { max-width: 900px; margin: 0 auto; padding: 3rem 2rem; }
-
-        /* セクション */
-        .section { background: white; border-radius: 16px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.03); border: 1px solid #f5f5f5; }
-        .section-title { font-size: 1.4rem; color: var(--indigo); margin-bottom: 1.5rem; padding-bottom: 0.8rem; border-bottom: 2px solid var(--viridian); }
-
-        /* 3つのカード */
-        .three-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1rem; }
-        .info-card { background: #fafafa; border-radius: 12px; padding: 1.5rem; text-align: center; border-top: 3px solid var(--viridian); }
-        .info-card .number { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--viridian); color: white; border-radius: 50%; font-weight: bold; margin-bottom: 1rem; }
-        .info-card h3 { font-size: 1rem; color: var(--indigo); margin-bottom: 0.5rem; }
-        .info-card p { font-size: 0.9rem; color: var(--text-light); }
-
-        /* 早見表 */
-        .estimate-box { background: linear-gradient(135deg, #fffef8 0%, #fffcf0 100%); border-radius: 12px; padding: 1.5rem; border-left: 3px solid var(--primary); }
-        .estimate-box h4 { font-size: 1rem; color: var(--indigo); margin-bottom: 1rem; }
-        .estimate-list { list-style: none; }
-        .estimate-list li { padding: 0.8rem 0; border-bottom: 1px dashed #f0f0f0; display: flex; justify-content: space-between; align-items: center; }
-        .estimate-list li:last-child { border-bottom: none; }
-        .estimate-list .amount { font-weight: bold; color: var(--viridian); }
-        .estimate-list .result { color: var(--text); }
-        .estimate-note { font-size: 0.85rem; color: var(--text-light); margin-top: 1rem; font-style: italic; }
-
-        /* イラスト風の図解 */
-        .flow-diagram { background: #fafafa; border-radius: 12px; padding: 2rem; margin: 1.5rem 0; }
-        .flow-diagram h4 { text-align: center; font-size: 1rem; color: var(--text-light); margin-bottom: 1.5rem; }
-        .flow-steps { display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; }
-        .flow-step { text-align: center; }
-        .flow-step .icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
-        .flow-step .label { font-size: 0.85rem; color: var(--text-light); }
-        .flow-step .value { font-size: 1.1rem; font-weight: bold; color: var(--viridian); }
-        .flow-arrow { font-size: 1.5rem; color: var(--viridian); }
-        .flow-result { background: linear-gradient(135deg, #f0faf7 0%, #e8f7f3 100%); color: var(--viridian); padding: 1rem 1.5rem; border-radius: 8px; text-align: center; margin-top: 1rem; border: 1px solid rgba(0, 155, 119, 0.2); }
-        .flow-result .big { font-size: 1.3rem; font-weight: bold; }
-
-        /* アコーディオン */
-        .accordion { border: 1px solid #f0f0f0; border-radius: 12px; margin-bottom: 1rem; overflow: hidden; }
-        .accordion-header { background: #fafafa; padding: 1rem 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; color: var(--indigo); transition: background 0.3s; }
-        .accordion-header:hover { background: #f5f5f5; }
-        .accordion-header .toggle { font-size: 1.2rem; transition: transform 0.3s; }
+        .accordion-header .toggle { font-size: 1rem; transition: transform 0.3s; color: #aaa; }
         .accordion-header.active .toggle { transform: rotate(180deg); }
         .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
         .accordion-content.show { max-height: 500px; }
-        .accordion-inner { padding: 1.5rem; border-top: 1px solid #f0f0f0; }
-        .accordion-inner p { margin-bottom: 1rem; font-size: 0.95rem; color: var(--text); }
-        .accordion-inner ul { margin-left: 1.5rem; margin-bottom: 1rem; }
-        .accordion-inner li { margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--text); }
+        .accordion-inner { padding: 1.2rem; border-top: 1px solid #f0f0f0; font-size: 0.92rem; color: var(--text, #333); line-height: 1.9; }
+        .accordion-inner p { margin-bottom: 0.8rem; }
+        .accordion-inner ul { margin-left: 1.2rem; }
+        .accordion-inner li { margin-bottom: 0.4rem; }
 
-        /* 手順ステップ */
-        .steps { counter-reset: step; }
-        .step-item { display: flex; gap: 1.5rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px dashed #f0f0f0; }
+        .steps { }
+        .step-item {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: flex-start;
+        }
         .step-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .step-number { flex-shrink: 0; width: 50px; height: 50px; background: var(--viridian); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; font-weight: bold; }
-        .step-content h4 { font-size: 1.1rem; color: var(--indigo); margin-bottom: 0.3rem; }
-        .step-content p { font-size: 0.95rem; color: var(--text-light); }
+        .step-number {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            background: var(--viridian, #009b77);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        .step-content h4 { font-size: 1rem; color: var(--indigo, #2b5082); margin-bottom: 0.3rem; }
+        .step-content p { font-size: 0.9rem; color: #666; line-height: 1.7; }
 
-        /* 領収書セクション */
-        .receipt-info { background: linear-gradient(135deg, #f5fcfa 0%, #edf9f6 100%); border-radius: 12px; padding: 1.5rem; }
-        .receipt-info h4 { font-size: 1rem; color: var(--viridian); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
-        .receipt-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-        .receipt-item { background: white; padding: 1rem; border-radius: 8px; }
-        .receipt-item .label { font-size: 0.85rem; color: #666; margin-bottom: 0.3rem; }
-        .receipt-item .value { font-size: 0.95rem; color: #333; font-weight: 500; }
+        .receipt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+        }
+        .receipt-item {
+            background: #fafafa;
+            padding: 1rem;
+            border-radius: 6px;
+        }
+        .receipt-item .label { font-size: 0.8rem; color: #999; margin-bottom: 0.3rem; }
+        .receipt-item .value { font-size: 0.92rem; color: var(--text, #333); font-weight: 500; }
 
-        /* FAQ */
-        .faq-item { padding: 1rem 0; border-bottom: 1px solid #e0e0e0; }
+        .faq-item { padding: 1.2rem 0; border-bottom: 1px solid #f0f0f0; }
         .faq-item:last-child { border-bottom: none; }
-        .faq-q { font-weight: bold; color: #d32f2f; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.5rem; }
-        .faq-q::before { content: "Q"; background: #d32f2f; color: white; padding: 0.1rem 0.5rem; border-radius: 4px; font-size: 0.8rem; }
-        .faq-a { padding-left: 2rem; color: #555; font-size: 0.95rem; }
+        .faq-q {
+            font-weight: 600;
+            color: var(--indigo, #2b5082);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            display: flex;
+            gap: 0.6rem;
+            align-items: flex-start;
+        }
+        .faq-q::before {
+            content: "Q";
+            background: var(--indigo, #2b5082);
+            color: white;
+            padding: 0.1rem 0.45rem;
+            border-radius: 3px;
+            font-size: 0.78rem;
+            flex-shrink: 0;
+            margin-top: 0.1rem;
+        }
+        .faq-a { padding-left: 1.8rem; color: #555; font-size: 0.9rem; line-height: 1.8; }
 
-        /* CTA */
-        .cta-section { background: linear-gradient(135deg, #d32f2f, #b71c1c); color: white; border-radius: 12px; padding: 2.5rem; text-align: center; margin-top: 2rem; }
-        .cta-section h2 { font-size: 1.5rem; margin-bottom: 1rem; }
-        .cta-section p { margin-bottom: 1.5rem; opacity: 0.95; }
-        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .cta-btn { padding: 1rem 2rem; border-radius: 8px; font-weight: bold; font-size: 1rem; transition: all 0.3s; }
-        .cta-btn.primary { background: white; color: #d32f2f; }
-        .cta-btn.primary:hover { background: #f5f5f5; transform: translateY(-2px); }
-        .cta-btn.secondary { background: transparent; color: white; border: 2px solid white; }
-        .cta-btn.secondary:hover { background: rgba(255,255,255,0.1); }
+        .tax-cta {
+            background: #f5f5f5;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        .tax-cta p { font-size: 0.92rem; color: #666; margin-bottom: 1.2rem; }
+        .tax-cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .tax-cta-btn {
+            padding: 0.8rem 1.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.2s;
+        }
+        .tax-cta-btn.primary {
+            background: var(--viridian, #009b77);
+            color: white;
+        }
+        .tax-cta-btn.primary:hover { opacity: 0.88; }
+        .tax-cta-btn.secondary {
+            background: white;
+            color: var(--indigo, #2b5082);
+            border: 1px solid #ddd;
+        }
+        .tax-cta-btn.secondary:hover { background: #f9f9f9; }
 
-        /* 注意書き */
-        .disclaimer { background: #f5f5f5; padding: 1rem 1.5rem; border-radius: 8px; margin-top: 2rem; }
-        .disclaimer p { font-size: 0.85rem; color: #888; text-align: center; }
-
-        /* SNSセクション */
-        .sns-section { background: #333; padding: 3rem 2rem; }
-        .sns-container { max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; flex-wrap: wrap; }
-        .sns-text { color: white; }
-        .sns-text h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
-        .sns-text p { font-size: 0.9rem; color: #aaa; line-height: 1.6; }
-        .sns-icons { display: flex; gap: 1rem; }
-        .sns-icon { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, opacity 0.3s; }
-        .sns-icon svg { width: 24px; height: 24px; }
-        .sns-icon:hover { transform: scale(1.1); opacity: 0.9; }
-        .sns-icon.facebook { background: #1877f2; color: white; }
-        .sns-icon.whatsapp { background: #25d366; color: white; }
-        .sns-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
-        .sns-icon.linkedin { background: #0a66c2; color: white; }
-        .sns-icon.line { background: #00c300; color: white; }
-        .sns-icon.youtube { background: #ff0000; color: white; }
-
-        footer { background: #222; color: white; padding: 2rem; text-align: center; }
-        footer p { font-size: 0.85rem; color: #888; }
-        footer a { color: #d32f2f; }
+        .disclaimer { font-size: 0.82rem; color: #bbb; text-align: center; margin-top: 1.5rem; }
 
         @media (max-width: 768px) {
-            .page-hero h1 { font-size: 1.6rem; }
             .three-cards { grid-template-columns: 1fr; }
-            .flow-steps { flex-direction: column; }
-            .flow-arrow { transform: rotate(90deg); }
             .receipt-grid { grid-template-columns: 1fr; }
-            .cta-buttons { flex-direction: column; }
-            .sns-container { flex-direction: column; text-align: center; }
-            .sns-icons { justify-content: center; flex-wrap: wrap; }
+            .tax-cta-buttons { flex-direction: column; }
+        }
+    </style>
+    <style id="global-override">
+        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
+
+        /* --- 余白（一番重要） --- */
+        .section { padding-top: 120px !important; padding-bottom: 120px !important; }
+        .main > section { padding-top: 120px !important; padding-bottom: 120px !important; }
+
+        /* --- フォント階層 --- */
+        .hero-mission-text {
+            font-size: clamp(38px, 5.5vw, 68px) !important;
+            font-weight: 900 !important;
+            line-height: 1.2 !important;
+            letter-spacing: -0.025em !important;
+        }
+        h1:not(.hero-mission-text) {
+            font-size: clamp(30px, 4vw, 52px) !important;
+            font-weight: 900 !important;
+            line-height: 1.25 !important;
+            letter-spacing: -0.02em !important;
+        }
+        h2 {
+            font-size: clamp(22px, 3vw, 40px) !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.015em !important;
+        }
+        h3 { font-size: clamp(18px, 2vw, 26px) !important; font-weight: 700 !important; }
+        p, li { font-size: clamp(16px, 1.4vw, 20px) !important; line-height: 2 !important; }
+
+        /* 小文字ラベル等は除外 */
+        .footer-copy, .page-header-en, .hero-mission-label,
+        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
+        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
+            font-size: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* --- statement-lead 強化 --- */
+        .statement-lead {
+            font-size: clamp(24px, 3.8vw, 48px) !important;
+            font-weight: 900 !important;
+            line-height: 1.35 !important;
+            letter-spacing: -0.02em !important;
+        }
+
+        /* --- 影・枠線・装飾を除去 --- */
+        .about-block, .story-item, .gallery-card, .board-card-minimal,
+        .news-item, .action-card, .card-tilt, .intro-highlight {
+            box-shadow: none !important;
+            border: none !important;
+        }
+        .about-block {
+            padding: 0 0 2.5rem 0 !important;
+            background: transparent !important;
+            border-bottom: 1px solid #f0f0f0 !important;
+            margin-bottom: 3rem !important;
+        }
+        .about-block:last-child { border-bottom: none !important; }
+        .intro-highlight {
+            background: transparent !important;
+            padding: 80px 0 !important;
+            max-width: 720px !important;
+            margin: 0 auto !important;
+        }
+        .card-tilt { transform: none !important; }
+        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
+
+        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
+        .hero-video-section {
+            height: 100vh !important;
+            min-height: 600px !important;
+        }
+        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
+        .hero-video-content {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            text-align: center !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            padding: 0 2rem !important;
+        }
+        .hero-mission-sub {
+            font-size: clamp(15px, 1.4vw, 18px) !important;
+            line-height: 1.9 !important;
+            opacity: 0.88 !important;
+        }
+        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
+
+        /* --- スクロールインジケーターアニメーション --- */
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.4); opacity: 0.3; }
+        }
+        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
+
+        /* --- index-flow 写真×文章 --- */
+        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
+        .index-flow-img img { border-radius: 4px !important; }
+        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
+
+        /* --- page-header --- */
+        .page-header { padding: 9rem 2rem 4rem !important; }
+        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
+
+        /* --- question-section --- */
+        .question-section {
+            padding: 60px 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* --- footer statement 強化 --- */
+        .footer-statement p {
+            font-size: clamp(17px, 1.8vw, 22px) !important;
+            font-weight: 700 !important;
+            line-height: 1.9 !important;
+            color: rgba(255,255,255,0.92) !important;
+        }
+
+        /* --- SNSバー --- */
+        .sns-bar-label { font-size: 0.68rem !important; }
+
+        /* --- モバイル --- */
+        @media (max-width: 768px) {
+            .section, .main > section {
+                padding-top: 72px !important;
+                padding-bottom: 72px !important;
+            }
+            .hero-video-section { height: 100svh !important; }
+            .index-flow { gap: 3rem !important; }
         }
     </style>
 </head>
 <body>
+
     <!-- Header -->
     <header class="header">
         <div class="header-inner">
             <a href="index.html" class="logo">
                 <span>GO TO HAPPY LIFE</span>
             </a>
-
             <nav class="nav">
                 <a href="index.html">TOP</a>
-                <a href="board.html">団体役員</a>
                 <a href="about.html">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
-                <a href="news.html">お知らせ</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html" class="active">寄付金控除</a>
                 <a href="contact.html">お問い合わせ</a>
-                <a href="donate.html">寄付・支援</a>
             </nav>
-
             <button class="mobile-menu-btn" aria-label="メニュー">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </div>
     </header>
 
-    <!-- ファーストビュー -->
-    <section class="page-hero">
-        <div class="page-hero-inner">
-            <p class="page-hero-en">TAX DEDUCTION</p>
+    <!-- Hero -->
+    <section class="tax-hero">
+        <div class="tax-hero-inner">
+            <p class="tax-hero-en">TAX DEDUCTION</p>
             <h1>寄付は、税金の優遇対象です。</h1>
-            <ul class="lead">
-                <li>確定申告をすると、寄付額に応じて所得税が軽くなります（※条件あり）</li>
-                <li>さらに、地域によっては住民税も対象になる場合があります</li>
+            <ul class="tax-hero-lead">
+                <li>確定申告をすると、寄付額に応じて所得税が軽くなります（条件あり）</li>
+                <li>地域によっては住民税も対象になる場合があります</li>
             </ul>
         </div>
     </section>
 
-    <main class="main">
-        <!-- まず知るべき3つ -->
-        <section class="section">
-            <h2 class="section-title">まず知るべき3つのこと</h2>
+    <main class="tax-main">
+
+        <!-- 寄付の使途 -->
+        <div class="tax-section">
+            <p style="line-height: 2; color: var(--text, #333); font-size: 0.95rem;">GO TO HAPPY LIFE への寄付は医療・福祉の社会課題を解決するプロジェクトに活用されます。NPO法人 GO TO HAPPY LIFE が管理し、パートナー企業や医療・福祉事業者と連携して事業として実装されます。</p>
+        </div>
+
+        <!-- 3つのこと -->
+        <div class="tax-section">
+            <h2 class="tax-section-title">まず知るべき3つのこと</h2>
             <div class="three-cards">
                 <div class="info-card">
                     <div class="number">1</div>
@@ -225,64 +442,49 @@
                     <p>確定申告で申請<br><small>（e-TaxもOK）</small></p>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- どれくらい戻る？ -->
-        <section class="section">
-            <h2 class="section-title">どれくらい戻る？（目安）</h2>
-            
-            <div class="flow-diagram">
-                <h4>例えば10,000円寄付すると…</h4>
-                <div class="flow-steps">
-                    <div class="flow-step">
-                        <div class="icon">😊</div>
-                        <div class="label">あなた</div>
-                    </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">
-                        <div class="value">10,000円</div>
-                        <div class="label">寄付</div>
-                    </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-step">
-                        <div class="icon">🏢</div>
-                        <div class="label">GO TO HAPPY LIFE</div>
-                    </div>
-                </div>
-                <div class="flow-result">
-                    <div class="big">所得税から 約3,200円 が戻ります</div>
-                    <div style="font-size: 0.85rem; margin-top: 0.5rem;">（寄付金 − 2,000円）× 40%</div>
-                </div>
-            </div>
+        <!-- 控除額の目安 -->
+        <div class="tax-section">
+            <h2 class="tax-section-title">控除額の目安</h2>
+            <table class="flow-table">
+                <thead>
+                    <tr>
+                        <th>寄付金額</th>
+                        <th>控除の目安（所得控除）</th>
+                        <th>控除の目安（税額控除）</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="amount">5,000円</td>
+                        <td>約600円〜</td>
+                        <td class="result">約1,200円〜</td>
+                    </tr>
+                    <tr>
+                        <td class="amount">10,000円</td>
+                        <td>約1,600円〜</td>
+                        <td class="result">約3,200円〜</td>
+                    </tr>
+                    <tr>
+                        <td class="amount">30,000円</td>
+                        <td>約5,600円〜</td>
+                        <td class="result">約11,200円〜</td>
+                    </tr>
+                    <tr>
+                        <td class="amount">100,000円</td>
+                        <td>約19,600円〜</td>
+                        <td class="result">約39,200円〜</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="tax-note">※金額はご本人の所得・選択方式により異なります。上記は目安としてご参照ください。</p>
+        </div>
 
-            <div class="estimate-box">
-                <h4>📊 控除額の目安（所得控除の場合）</h4>
-                <ul class="estimate-list">
-                    <li>
-                        <span class="amount">5,000円 寄付</span>
-                        <span class="result">→ 約1,200円〜 の控除</span>
-                    </li>
-                    <li>
-                        <span class="amount">10,000円 寄付</span>
-                        <span class="result">→ 約3,200円〜 の控除</span>
-                    </li>
-                    <li>
-                        <span class="amount">30,000円 寄付</span>
-                        <span class="result">→ 約11,200円〜 の控除</span>
-                    </li>
-                    <li>
-                        <span class="amount">100,000円 寄付</span>
-                        <span class="result">→ 約39,200円〜 の控除</span>
-                    </li>
-                </ul>
-                <p class="estimate-note">※正確な金額はご本人の所得や選択する方式により異なります。上記は目安としてご参照ください。</p>
-            </div>
-        </section>
+        <!-- 詳しく -->
+        <div class="tax-section">
+            <h2 class="tax-section-title">詳しく知りたい方へ</h2>
 
-        <!-- 計算のしくみ（アコーディオン） -->
-        <section class="section">
-            <h2 class="section-title">詳しく知りたい方へ</h2>
-            
             <div class="accordion">
                 <div class="accordion-header" onclick="toggleAccordion(this)">
                     <span>計算のしくみ（詳細）</span>
@@ -290,18 +492,8 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
-                        <p><strong>所得控除方式</strong></p>
-                        <p>年間の寄付合計額 − 2,000円 が、所得から差し引かれます。</p>
-                        <ul>
-                            <li>控除上限：総所得金額の40%まで</li>
-                            <li>実際の税還付額は、所得税率（5%〜45%）によって変動</li>
-                        </ul>
-                        <p><strong>税額控除方式（認定NPO等の場合）</strong></p>
-                        <p>（寄付金 − 2,000円）× 40% が、税額から直接差し引かれます。</p>
-                        <ul>
-                            <li>控除上限：所得税額の25%まで</li>
-                            <li>小額〜中額の寄付では、税額控除の方が有利な場合が多い</li>
-                        </ul>
+                        <p><strong>所得控除方式</strong><br>年間の寄付合計額 − 2,000円 が所得から差し引かれます。控除上限は総所得金額の40%。実際の還付額は所得税率により変動します。</p>
+                        <p><strong>税額控除方式（認定NPO等）</strong><br>（寄付金 − 2,000円）× 40% が税額から直接差し引かれます。控除上限は所得税額の25%。小額〜中額では税額控除の方が有利な場合が多いです。</p>
                     </div>
                 </div>
             </div>
@@ -313,12 +505,12 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
-                        <p>お住まいの自治体が当法人を「寄付金税額控除の対象」として条例で指定している場合、住民税からも控除を受けられます。</p>
+                        <p>お住まいの自治体が条例で指定している場合、住民税からも控除を受けられます。</p>
                         <ul>
                             <li>都道府県民税：最大4%</li>
                             <li>市区町村民税：最大6%</li>
                         </ul>
-                        <p>対象かどうかは、お住まいの自治体にご確認ください。</p>
+                        <p>対象かどうかはお住まいの自治体にご確認ください。</p>
                     </div>
                 </div>
             </div>
@@ -330,20 +522,16 @@
                 </div>
                 <div class="accordion-content">
                     <div class="accordion-inner">
-                        <p>法人からのご寄付は、「一般寄付金」または「特定公益増進法人等への寄付金」として損金算入できます。</p>
-                        <ul>
-                            <li>損金算入限度額の計算方法が個人とは異なります</li>
-                            <li>詳細は税理士・会計士にご相談ください</li>
-                        </ul>
-                        <p>法人でのご寄付をご検討の方は、<a href="contact.html" style="color: #d32f2f; text-decoration: underline;">お問い合わせ</a>ください。</p>
+                        <p>法人からの寄付は「一般寄付金」または「特定公益増進法人等への寄付金」として損金算入できます。詳細は税理士・会計士にご相談ください。</p>
+                        <p>法人でのご寄付をご検討の方は<a href="contact.html" style="color: var(--viridian);">お問い合わせ</a>ください。</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- 手順 -->
-        <section class="section">
-            <h2 class="section-title">申告の手順（3ステップ）</h2>
+        <div class="tax-section">
+            <h2 class="tax-section-title">申告の手順（3ステップ）</h2>
             <div class="steps">
                 <div class="step-item">
                     <div class="step-number">1</div>
@@ -363,111 +551,106 @@
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h4>確定申告で申請</h4>
-                        <p>確定申告書の「寄付金控除」欄に記入して提出。e-Taxでもお手続き可能です。</p>
+                        <p>確定申告書の「寄付金控除」欄に記入して提出。e-Taxでも手続き可能です。</p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
 
-        <!-- 領収書について -->
-        <section class="section">
-            <h2 class="section-title">領収書について</h2>
-            <div class="receipt-info">
-                <h4>📄 寄付金受領証明書のご案内</h4>
-                <div class="receipt-grid">
-                    <div class="receipt-item">
-                        <div class="label">発行時期</div>
-                        <div class="value">毎年1月下旬に、前年分を一括発送</div>
-                    </div>
-                    <div class="receipt-item">
-                        <div class="label">送付方法</div>
-                        <div class="value">郵送（ご希望によりメール可）</div>
-                    </div>
-                    <div class="receipt-item">
-                        <div class="label">宛名</div>
-                        <div class="value">ご登録のお名前で発行</div>
-                    </div>
-                    <div class="receipt-item">
-                        <div class="label">再発行</div>
-                        <div class="value">お問い合わせにて対応可能</div>
-                    </div>
+        <!-- 領収書 -->
+        <div class="tax-section">
+            <h2 class="tax-section-title">領収書について</h2>
+            <div class="receipt-grid">
+                <div class="receipt-item">
+                    <div class="label">発行時期</div>
+                    <div class="value">毎年1月下旬（前年分を一括）</div>
+                </div>
+                <div class="receipt-item">
+                    <div class="label">送付方法</div>
+                    <div class="value">郵送（ご希望によりメール可）</div>
+                </div>
+                <div class="receipt-item">
+                    <div class="label">宛名</div>
+                    <div class="value">ご登録のお名前で発行</div>
+                </div>
+                <div class="receipt-item">
+                    <div class="label">再発行</div>
+                    <div class="value">お問い合わせにて対応可能</div>
                 </div>
             </div>
-        </section>
+        </div>
 
         <!-- FAQ -->
-        <section class="section">
-            <h2 class="section-title">よくあるご質問</h2>
-            
+        <div class="tax-section">
+            <h2 class="tax-section-title">よくあるご質問</h2>
             <div class="faq-item">
                 <div class="faq-q">住民税も戻りますか？</div>
-                <div class="faq-a">お住まいの自治体が条例で指定している場合に限り、控除の対象となります。詳しくは各自治体の税務窓口にご確認ください。</div>
+                <div class="faq-a">お住まいの自治体が条例で指定している場合のみ対象となります。各自治体の税務窓口にご確認ください。</div>
             </div>
-            
             <div class="faq-item">
-                <div class="faq-q">会社（法人）からの寄付も控除対象ですか？</div>
+                <div class="faq-q">法人からの寄付も控除対象ですか？</div>
                 <div class="faq-a">はい。法人の場合は「損金算入」として処理できます。計算方法が異なりますので、税理士にご相談ください。</div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-q">領収書をなくしてしまいました</div>
-                <div class="faq-a">再発行が可能です。<a href="contact.html" style="color: #d32f2f;">お問い合わせフォーム</a>よりご連絡ください。</div>
+                <div class="faq-a">再発行が可能です。<a href="contact.html" style="color: var(--viridian);">お問い合わせフォーム</a>よりご連絡ください。</div>
             </div>
-            
             <div class="faq-item">
                 <div class="faq-q">年末調整で申請できますか？</div>
-                <div class="faq-a">寄付金控除は年末調整では申請できません。確定申告（またはワンストップ特例が使える場合を除く）が必要です。</div>
+                <div class="faq-a">寄付金控除は年末調整では申請できません。確定申告が必要です。</div>
             </div>
-        </section>
+        </div>
 
         <!-- CTA -->
-        <div class="cta-section">
-            <h2>あなたの支援は、社会を設計する力になる。</h2>
+        <div class="tax-cta">
             <p>寄付金控除を活用して、より大きな支援を届けませんか。</p>
-            <div class="cta-buttons">
-                <a href="donate.html" class="cta-btn primary">寄付する（100円〜上限なし）</a>
-                <a href="contact.html" class="cta-btn secondary">領収書について問い合わせる</a>
+            <div class="tax-cta-buttons">
+                <a href="donate.html" class="tax-cta-btn primary">寄付する</a>
+                <a href="contact.html" class="tax-cta-btn secondary">領収書について問い合わせる</a>
             </div>
         </div>
 
-        <!-- 注意書き -->
-        <div class="disclaimer">
-            <p>※本ページは概要をご案内するものです。詳細は税務署・各自治体、または税理士にご確認ください。</p>
-        </div>
+        <p class="disclaimer">※本ページは概要をご案内するものです。詳細は税務署・各自治体、または税理士にご確認ください。</p>
+
     </main>
 
-    <!-- SNSフォローセクション -->
-    <section class="sns-section">
-        <div class="sns-container">
-            <div class="sns-text">
-                <h3>SNSをフォロー</h3>
-                <p>各種SNSで最新情報をお届けしています。<br>知ること、広めることが、社会を変える一歩になります。</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-statement">
+                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
             </div>
-            <div class="sns-icons">
-                <a href="#" class="sns-icon facebook" title="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-                <a href="#" class="sns-icon whatsapp" title="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-                <a href="#" class="sns-icon instagram" title="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-                <a href="#" class="sns-icon linkedin" title="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
-                <a href="#" class="sns-icon line" title="LINE"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.105.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg></a>
-                <a href="#" class="sns-icon youtube" title="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+
+            <div class="footer-top">
+                <a href="index.html" class="footer-logo">
+                    <span>GO TO HAPPY LIFE</span>
+                </a>
+                <nav class="footer-nav">
+                    <a href="index.html">TOP</a>
+                    <a href="about.html">団体について</a>
+                    <a href="support-system.html">支援の仕組み</a>
+                    <a href="donate.html">寄付する</a>
+                    <a href="tax-deduction.html">寄付金控除</a>
+                    <a href="contact.html">お問い合わせ</a>
+                </nav>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-links">
+                    <a href="privacy.html">プライバシーポリシー</a>
+                    <a href="sitepolicy.html">サイトポリシー</a>
+                </div>
+                <p class="footer-copy">© GO TO HAPPY LIFE</p>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <p>© 2025 NPO法人 GO TO HAPPY LIFE | <a href="index.html">トップに戻る</a></p>
     </footer>
 
     <script>
         function toggleAccordion(header) {
             const content = header.nextElementSibling;
             const isOpen = content.classList.contains('show');
-            
-            // 全て閉じる
             document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('show'));
             document.querySelectorAll('.accordion-header').forEach(h => h.classList.remove('active'));
-            
-            // クリックしたものを開く（閉じていた場合）
             if (!isOpen) {
                 content.classList.add('show');
                 header.classList.add('active');

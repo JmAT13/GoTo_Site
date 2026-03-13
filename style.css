@@ -1010,7 +1010,7 @@ body {
 .nav {
     display: flex;
     align-items: center;
-    gap: 36px;
+    gap: 28px;
 }
 
 .nav a {
@@ -1800,16 +1800,16 @@ body {
 /* Footer Statement */
 .footer-statement {
     text-align: center;
-    padding: 32px 0;
-    margin-bottom: 32px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding: 40px 0;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .footer-statement p {
     font-size: 1.1rem;
     font-weight: 700;
-    line-height: 1.8;
-    color: var(--text);
+    line-height: 1.9;
+    color: rgba(255,255,255,0.9);
 }
 
 .about-image-full {
@@ -2288,22 +2288,11 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--primary);
-    color: var(--text);
-    padding: 48px 24px 32px;
-    margin-top: 80px;
+    background: var(--indigo);
+    color: var(--white);
+    padding: 56px 24px 32px;
+    margin-top: 0;
     position: relative;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: -30px;
-    left: 0;
-    right: 0;
-    height: 40px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 40'%3E%3Cpath d='M0,40 Q300,0 600,20 T1200,0 L1200,40 Z' fill='%23F8B500'/%3E%3C/svg%3E") no-repeat center top;
-    background-size: cover;
 }
 
 .footer-inner {
@@ -2317,14 +2306,14 @@ body {
     align-items: flex-start;
     margin-bottom: 32px;
     padding-bottom: 32px;
-    border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
 }
 
 .footer-logo {
     display: flex;
     align-items: center;
     gap: 12px;
-    color: var(--text);
+    color: var(--white);
     text-decoration: none;
     font-weight: 700;
 }
@@ -2336,18 +2325,19 @@ body {
 
 .footer-nav {
     display: flex;
-    gap: 32px;
+    gap: 28px;
+    flex-wrap: wrap;
 }
 
 .footer-nav a {
-    color: var(--text);
+    color: rgba(255,255,255,0.7);
     text-decoration: none;
-    font-size: 0.9rem;
-    transition: opacity 0.2s;
+    font-size: 0.88rem;
+    transition: color 0.2s;
 }
 
 .footer-nav a:hover {
-    opacity: 0.7;
+    color: var(--white);
 }
 
 .footer-bottom {
@@ -2362,20 +2352,19 @@ body {
 }
 
 .footer-links a {
-    color: var(--text);
+    color: rgba(255,255,255,0.5);
     text-decoration: none;
-    font-size: 0.85rem;
-    opacity: 0.8;
+    font-size: 0.82rem;
+    transition: color 0.2s;
 }
 
 .footer-links a:hover {
-    opacity: 1;
+    color: rgba(255,255,255,0.9);
 }
 
 .footer-copy {
-    font-size: 0.85rem;
-    color: var(--text);
-    opacity: 0.7;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.4);
 }
 
 /* Responsive */

@@ -8,6 +8,140 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style id="global-override">
+        /* ===== Apple / Stripe / Patagonia 風 グローバルデザイン ===== */
+
+        /* --- 余白（一番重要） --- */
+        .section { padding-top: 120px !important; padding-bottom: 120px !important; }
+        .main > section { padding-top: 120px !important; padding-bottom: 120px !important; }
+
+        /* --- フォント階層 --- */
+        .hero-mission-text {
+            font-size: clamp(38px, 5.5vw, 68px) !important;
+            font-weight: 900 !important;
+            line-height: 1.2 !important;
+            letter-spacing: -0.025em !important;
+        }
+        h1:not(.hero-mission-text) {
+            font-size: clamp(30px, 4vw, 52px) !important;
+            font-weight: 900 !important;
+            line-height: 1.25 !important;
+            letter-spacing: -0.02em !important;
+        }
+        h2 {
+            font-size: clamp(22px, 3vw, 40px) !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.015em !important;
+        }
+        h3 { font-size: clamp(18px, 2vw, 26px) !important; font-weight: 700 !important; }
+        p, li { font-size: clamp(16px, 1.4vw, 20px) !important; line-height: 2 !important; }
+
+        /* 小文字ラベル等は除外 */
+        .footer-copy, .page-header-en, .hero-mission-label,
+        .index-flow-label, .tax-note, .disclaimer, .estimate-note,
+        .sns-bar-label, .hero-mission-sub, small, .tax-hero-en {
+            font-size: inherit !important;
+            line-height: inherit !important;
+        }
+
+        /* --- statement-lead 強化 --- */
+        .statement-lead {
+            font-size: clamp(24px, 3.8vw, 48px) !important;
+            font-weight: 900 !important;
+            line-height: 1.35 !important;
+            letter-spacing: -0.02em !important;
+        }
+
+        /* --- 影・枠線・装飾を除去 --- */
+        .about-block, .story-item, .gallery-card, .board-card-minimal,
+        .news-item, .action-card, .card-tilt, .intro-highlight {
+            box-shadow: none !important;
+            border: none !important;
+        }
+        .about-block {
+            padding: 0 0 2.5rem 0 !important;
+            background: transparent !important;
+            border-bottom: 1px solid #f0f0f0 !important;
+            margin-bottom: 3rem !important;
+        }
+        .about-block:last-child { border-bottom: none !important; }
+        .intro-highlight {
+            background: transparent !important;
+            padding: 80px 0 !important;
+            max-width: 720px !important;
+            margin: 0 auto !important;
+        }
+        .card-tilt { transform: none !important; }
+        .card-tilt:hover { transform: none !important; box-shadow: none !important; }
+
+        /* --- ヒーロー 100vh / 中央 / オーバーレイ修正 --- */
+        .hero-video-section {
+            height: 100vh !important;
+            min-height: 600px !important;
+        }
+        .hero-video-overlay { background: rgba(0,0,0,0.35) !important; }
+        .hero-video-content {
+            position: absolute !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            text-align: center !important;
+            width: 100% !important;
+            max-width: 900px !important;
+            padding: 0 2rem !important;
+        }
+        .hero-mission-sub {
+            font-size: clamp(15px, 1.4vw, 18px) !important;
+            line-height: 1.9 !important;
+            opacity: 0.88 !important;
+        }
+        .hero-cta-btn { padding: 13px 30px !important; font-size: 15px !important; font-weight: 600 !important; }
+
+        /* --- スクロールインジケーターアニメーション --- */
+        @keyframes scrollPulse {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(0.4); opacity: 0.3; }
+        }
+        .hero-scroll-line { animation: scrollPulse 2s ease-in-out infinite !important; }
+
+        /* --- index-flow 写真×文章 --- */
+        .index-flow { gap: 6rem !important; margin: 5rem 0 !important; }
+        .index-flow-img img { border-radius: 4px !important; }
+        .index-flow-text h3 { font-size: clamp(20px, 2.5vw, 30px) !important; }
+
+        /* --- page-header --- */
+        .page-header { padding: 9rem 2rem 4rem !important; }
+        .page-header h1 { font-size: clamp(28px, 4vw, 52px) !important; }
+
+        /* --- question-section --- */
+        .question-section {
+            padding: 60px 0 !important;
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        /* --- footer statement 強化 --- */
+        .footer-statement p {
+            font-size: clamp(17px, 1.8vw, 22px) !important;
+            font-weight: 700 !important;
+            line-height: 1.9 !important;
+            color: rgba(255,255,255,0.92) !important;
+        }
+
+        /* --- SNSバー --- */
+        .sns-bar-label { font-size: 0.68rem !important; }
+
+        /* --- モバイル --- */
+        @media (max-width: 768px) {
+            .section, .main > section {
+                padding-top: 72px !important;
+                padding-bottom: 72px !important;
+            }
+            .hero-video-section { height: 100svh !important; }
+            .index-flow { gap: 3rem !important; }
+        }
+    </style>
 </head>
 <body>
 
@@ -20,12 +154,11 @@
 
             <nav class="nav">
                 <a href="index.html">TOP</a>
-                <a href="board.html">団体役員</a>
                 <a href="about.html" class="active">団体について</a>
                 <a href="support-system.html">支援の仕組み</a>
-                <a href="news.html">お知らせ</a>
+                <a href="donate.html">寄付する</a>
+                <a href="tax-deduction.html">寄付金控除</a>
                 <a href="contact.html">お問い合わせ</a>
-                <a href="donate.html">寄付・支援</a>
             </nav>
 
             <button class="mobile-menu-btn" aria-label="メニュー">
@@ -54,8 +187,13 @@
                     <dd>特定非営利活動法人 GO TO HAPPY LIFE<br><span class="org-sub">（旧名称：日本在宅看護普及会）</span></dd>
                 </div>
                 <div class="org-info-row">
-                    <dt>理事長</dt>
-                    <dd>後藤 栄子</dd>
+                    <dt>役員</dt>
+                    <dd>
+                        後藤 栄子（理事長）<br>
+                        後藤 基温（理事）<br>
+                        伊藤 晋（理事）<br>
+                        大下 甚（監事）
+                    </dd>
                 </div>
                 <div class="org-info-row">
                     <dt>設立</dt>
@@ -70,6 +208,11 @@
                     <dd>医療と福祉を軸に、制度の外で困っている人のための活動</dd>
                 </div>
             </dl>
+
+            <div class="about-block" style="margin-top: 2rem;">
+                <p>GO TO HAPPY LIFE は<br>NPOとして寄付を受け取り<br>社会課題の解決を推進します。</p>
+                <p>プロジェクトの企画・運営は<br>パートナー企業である<br>TAmJ株式会社が担当し<br>医療・福祉・地域企業などの<br>実行パートナーと連携して<br>事業を実装します。</p>
+            </div>
         </section>
 
         <section class="section">
@@ -134,6 +277,13 @@
                 <p>それが、私たちの立つ位置だ。</p>
             </div>
 
+            <div class="about-block">
+                <h3>私たちの役割</h3>
+                <p>私たちは<br>すべてを自分たちで行う団体ではありません。</p>
+                <p>社会課題の解決には<br>公益・事業・現場<br>それぞれの役割が必要です。</p>
+                <p>GO TO HAPPY LIFE は<br>その中心で<br>プロジェクトを推進するNPO法人です。</p>
+            </div>
+
             <!-- Gallery -->
             <div class="gallery-section animate-on-scroll">
                 <h3 class="gallery-title accent-line">活動ギャラリー</h3>
@@ -183,19 +333,19 @@
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-statement">
-                <p>GO TO HAPPY LIFE は、<br>正解よりも、現場を選び続けるNPOです。</p>
+                <p>GO TO HAPPY LIFE は、<br>社会課題を事業として<br>完成させるNPOです。</p>
             </div>
 
             <div class="footer-top">
                 <a href="index.html" class="footer-logo">
                     <span>GO TO HAPPY LIFE</span>
                 </a>
-
                 <nav class="footer-nav">
                     <a href="index.html">TOP</a>
-                    <a href="board.html">団体役員</a>
                     <a href="about.html">団体について</a>
-                    <a href="news.html">お知らせ</a>
+                    <a href="support-system.html">支援の仕組み</a>
+                    <a href="donate.html">寄付する</a>
+                    <a href="tax-deduction.html">寄付金控除</a>
                     <a href="contact.html">お問い合わせ</a>
                 </nav>
             </div>
